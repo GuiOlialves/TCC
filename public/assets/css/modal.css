@@ -1,0 +1,472 @@
+.modal-dashboard{
+    width: 45rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--gray-500);
+    background-color: var(--blue-800);
+    color: var(--white);
+    padding: 30px;
+    opacity: 1 !important;
+}
+
+/* .close{
+    position: relative;
+    left: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    color: var(--white);
+    border-radius: 100%;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+} */
+
+.close:hover{
+    background-color: var(--gray-500);
+}
+
+.modal-dashboard .profile-pet-modal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.modal-dashboard .profile-pet-modal img{
+    width: 100px;
+    height: 100px;
+    background-color: var(--white);
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.modal-dashboard .new-appointment h1{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.modal-dashboard .new-appointment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-dashboard .new-appointment img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.modal-dashboard .new-appointment form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modal-dashboard .new-appointment form .inputs{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.modal-dashboard .new-appointment form .inputs input{
+    border-radius: 5px;
+    padding: 4px;
+    border: none;
+    margin-top: 5px;
+}
+
+.new-appointment-button {
+    width: 150px;
+    height: 30px;
+    border: 1px solid var(--button);
+    color: white;
+    background-color: var(--button);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.new-appointment-button:hover{
+    background-color: transparent;
+}
+
+/* 
+.modal-dashboard .new-appointment .button:hover{
+    background-color: transparent;
+} */
+
+.modal-agenda{
+    min-width: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--gray-500);
+    background-color: var(--blue-800);
+    color: var(--white);
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-agenda header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.modal-agenda header img{
+    width: 60px;
+    height: 60px;
+    background-color: var(--white);
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50px;
+}
+
+.modal-agenda .appointment-info{
+    display: flex;
+}
+
+.modal-agenda .appointment-info .info-name-pet{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 120px;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.modal-agenda .appointment-date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.modal-agenda .buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-agenda .buttons button{
+    margin-bottom: 10px;
+    width: 150px;
+    height: 30px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50px;
+    transition: 0.2s;
+}
+
+.modal-agenda .buttons button#pet-perfil{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+.modal-agenda .buttons button#pet-perfil:hover{
+    color: black;
+    background-color: rgb(236, 233, 233);
+}
+
+.modal-agenda .buttons button#confirm-appointment{
+    color: #3B9943;
+    background-color: #3B994380;
+}
+
+.modal-agenda .buttons button#confirm-appointment:hover{
+    background-color: #3B9943;
+    color: rgb(247, 237, 237);
+}
+
+.modal-agenda .buttons button#cancel-appointment{
+    background-color: #8B2E2E;
+    color: #FFB3B3;
+}
+
+.modal-agenda .buttons button#cancel-appointment:hover{
+    background-color: #d84949;
+    color: rgb(247, 237, 237);
+}
+
+.edit-appointment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--gray-500);
+    border-radius: 8px;
+    padding: 8px;
+    color: var(--white);
+    position: relative;
+    left: 37%;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.edit-appointment img{
+    width: 15px;
+    height: 15px;
+}
+
+
+
+.modal-edit-appointment{
+    width: 50rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--gray-500);
+    background-color: var(--blue-800);
+    color: var(--white);
+    padding: 30px;
+    opacity: 1 !important;
+}
+
+.modal-edit-appointment .close{
+    position: relative;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    color: var(--white);
+    border-radius: 100%;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close:hover{
+    background-color: var(--gray-500);
+}
+
+.modal-edit-appointment h1{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.modal-edit-appointment{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-edit-appointment img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.modal-edit-appointment form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modal-edit-appointment form .inputs{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.modal-edit-appointment form .inputs input, .modal-edit-appointment form .inputs select{
+    border-radius: 5px;
+    padding: 4px;
+    border: none;
+    margin-top: 5px;
+}
+
+.modal-add-pet-profile{
+    display: none;
+    min-width: 500px;
+    max-height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--gray-500);
+    background-color: var(--blue-800);
+    color: var(--white);
+    padding: 30px;
+}
+
+.modal-add-pet-profile .profile-pet-modal .especies{
+    display: flex;
+    margin-left: 20px;
+}
+
+.modal-add-pet-profile .profile-pet-modal p{
+    margin-bottom: 20px;
+}
+
+.modal-add-pet-profile .profile-pet-modal .especies img{
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 3.125rem;
+    margin-right: 20px;
+    cursor: pointer;
+
+}
+
+.modal-add-pet-profile .profile-pet-modal .especies img.selected{
+    border: 3px solid orange;  
+}
+
+.modal-add-pet-profile form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    max-height: 300px; /* Altura máxima para o formulário */
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical quando o conteúdo ultrapassar a altura */
+    padding-right: 25px; /* Adiciona espaçamento para a barra de rolagem */
+}
+
+.modal-add-pet-profile form::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-add-pet-profile form::-webkit-scrollbar-thumb {
+    background: var(--gray-500);
+    border-radius: 4px;
+}
+
+.modal-add-pet-profile form::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-add-pet-profile form input, .modal-add-pet-profile form select{
+    width: 10rem;
+    padding: 3px 10px;
+    height: 1.5rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal-add-pet-profile form div div{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}  
+
+.modal-add-pet-profile form .appointment-form{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.modal-add-pet-profile form .divButton{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-add-pet-profile form .appointment-form button{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 95%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--button);
+    background-color: transparent;
+    color: var(--white);
+    transition: 0.2s;
+}
+
+.modal-add-pet-profile form .appointment-form button:hover{
+    background-color: var(--button);
+}
+
+.stock{
+    min-width: 900px;
+    max-height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--gray-500);
+    background-color: var(--blue-800);
+    color: var(--white);
+    padding: 30px;
+}
+
+.modal-add-item{
+    display: none;
+}
+
+.stock form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+    color: var(--white);
+}
+
+.stock form .table-add, .stock form .table-edit{
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    background-color: var(--blue-700);
+    padding: 20px 10px 20px 10px;
+}
+
+.stock form .table-add .colunm-item, .stock form .table-edit .colunm-item{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--gray-500);
+    align-items: center;
+}
+
+.stock form .table-add .colunm-item p, .stock form .table-edit .colunm-item p{
+    margin-bottom: 20px;
+}
+
+.stock form .table-add .colunm-item input,  form .table-add select, .stock form .table-edit .colunm-item input,  form .table-edit select{
+    padding: 4px;
+}
+
+.stock form button{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 150px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--button);
+    background-color: transparent;
+    color: var(--white);
+    transition: 0.2s;
+}
+
+.stock button:hover{
+    background-color: var(--button);
+}

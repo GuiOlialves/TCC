@@ -1,0 +1,98 @@
+.invisivel{
+    display: none !important; 
+}
+
+.visivel{
+    display: block !important; 
+}
+
+@media (max-width: 940px) {
+    .side-bar, .ghost{
+        display: none;
+    }
+
+    .mobile-modal-button{
+        display: block;
+    }
+
+    header .left-side .logo{
+        display: flex;
+    }
+
+    .side-bar{
+        border: 3px solid var(--blue-700);
+    }
+
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .info-pets-list, .appointments-list{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .info-pets-list .pet-card, .appointments-list .appointment{
+        margin: 20px;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        color: white;
+    }
+    
+    .imagem{
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .logo h1{
+        font-size: 16px;
+    }
+
+    header input{
+        width: 8rem;
+        padding: 3px 10px;
+        height: 1rem;
+        border-radius: 8px;
+        border: none;
+    }
+
+    header .right-side{
+        display: none;
+    }
+
+    .modal-agenda{
+        min-width: 350px;
+    }
+
+    .modal-add-pet-profile{
+        max-width: 100px;
+    }
+
+    .modal-add-pet-profile form label{
+        font-size: 12px;
+    }
+
+    .modal-add-pet-profile form input{
+        width: 100px;
+    }
+
+    .modal-dashboard{
+        width: 30rem;
+    }
+
+    .modal-dashboard .new-appointment form .inputs{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+    }
+    
+}

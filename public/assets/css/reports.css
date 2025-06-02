@@ -1,0 +1,49 @@
+.reports{
+    color: var(--white);
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+}
+
+.reports .report{
+    width: 300px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--blue-800);
+    margin: 25px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.reports .report img{
+    margin: 20px 0;
+    width: 200px;
+}
+
+.reports .report .report-data{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.reports .report .report-revenue{
+    width: 100%;
+}
+
+.reports .report .report-revenue header{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.reports .report .report-revenue .item{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.reports .report .report-revenue .item p{
+    margin: 15px 0;
+}

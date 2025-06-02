@@ -1,0 +1,71 @@
+.info-pets-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pet-card{
+    cursor: pointer;
+    width: 15.625rem;
+    max-height: 15.625rem;
+    margin-top: 3.125rem;
+    margin-left: 3.125rem;
+    color: var(--white);
+    background-color: var(--blue-800);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.pet-card .pet-profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pet-card .pet-profile img{
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--white);
+    padding: 5px;
+    border-radius: 3.125rem;
+    margin-bottom: 10px;
+}
+
+.pet-card p{
+    margin-bottom: 20px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    margin-top: 2.5rem; 
+    margin-left: 2.5rem;
+}
+
+.search input{
+    border: none;
+    border-bottom-left-radius:20px ;
+    /* border-top-left-radius: 8px; */
+    width: 450px;
+    height: 45px;
+    padding: 15px;
+    font-size: 15px;
+}
+
+.search button{
+    height: 45px;
+    width: 50px;
+    border: none;
+    border-top-right-radius:20px ;
+    background-color: var(--white);
+    border-left: 2px solid var(--gray-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.search button img{
+    width: 15px;
+    height: 15px;
+}

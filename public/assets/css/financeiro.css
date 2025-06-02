@@ -1,0 +1,57 @@
+.financial{
+    display: flex;
+    margin-top: 25px;
+    justify-content: space-around;
+    color: var(--white);
+    font-size: 12px;
+}
+
+.financial .graph{
+    display: flex;
+    align-items: center;
+    background-color: var(--blue-800);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.financial .graph p{
+    margin: 20px;
+}
+
+.financial .graph.colunm{
+    flex-direction: column;
+}
+
+.financial .data-revenue{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--blue-800);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.financial .data-revenue .data{
+    width: 100%;
+}
+
+.financial .data-revenue .data header, .financial .data-revenue .data .item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.financial .data-revenue .data header p, .financial .data-revenue .data .item p{
+    display: flex;
+    width: 200PX;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.financial .data-revenue .data .item{
+    display: flex;
+}

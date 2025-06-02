@@ -1,0 +1,104 @@
+.appointments-list{
+    display: flex;
+    flex-wrap: wrap;}
+
+.appointment{
+    cursor: pointer;
+    width: 300px;
+    max-height: 250px;
+    margin-top: 3.125rem;
+    margin-left: 3.125rem;
+    color: var(--white);
+    background-color: var(--blue-800);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.appointment .pet-info{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.appointment img{
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--white);
+    padding: 5px;
+    border-radius: 3.125rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.appointment .pet-info h2{
+    font-weight: 300;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.appointment .pet-info p{
+    font-size: 0.75rem;
+    font-weight: 100;
+}
+
+.appointment .buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.appointment .buttons button{
+    border: none;
+    width: 7.5rem;
+    font-size: 0.75rem;
+    padding: 3px;
+    border-radius: 50px;
+}
+
+.appointment .date-info{
+    width: 100%;
+}
+
+.appointment .date-info div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.appointment .date-info div:first-child{
+    margin-bottom: 20px;
+}
+
+.appointment .date-info span{
+    font-weight: 300;
+    font-size: 0.75rem;
+}
+
+.add-pet{
+    position: fixed;
+    top: 87%;
+    left: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: var(--blue-800);
+    color: var(--white);
+    border-radius: 100%;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.error{
+    outline: 2px solid red;
+}
+
+.error-message{
+    font-size: 10px;
+    color: red;
+    display: none;
+    margin-top: 5px;
+}

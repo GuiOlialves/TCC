@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/agenda.css" />
+    <link rel="stylesheet" href="/assets/css/modal.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <title>VetControl - Agenda</title>
+  </head>
+  <body>
+    <main>
+      <section class="side-bar">
+        <div class="logo">
+          <img
+            src="/assets/images/logo.png"
+            class="imagem"
+            alt="Logo VetControl"
+          />
+        </div>
+        <nav>
+          <a href="/lista-pets"
+            ><img src="/assets/images/home.png" alt="Lista de Pets" />Lista de
+            Pets</a
+          >
+          <a href="/agenda"
+            ><img src="/assets/images/calendar.png" alt="Agenda" />Agenda</a
+          >
+          <a href="/estoque"
+            ><img src="/assets/images/stock.png" alt="Estoque" />Estoque</a
+          >
+          <a href="/financeiro"
+            ><img src="/assets/images/finance.png" alt="Financeiro" />Painel
+            Financeiro</a
+          >
+          <a href="/relatorios"
+            ><img
+              src="/assets/images/relatorios.png"
+              alt="Relatórios"
+            />Relatórios</a
+          >
+        </nav>
+      </section>
+
+      <div class="main2">
+        <header class="top-bar">
+          <div class="left-side">
+            <div class="logo">
+              <h1>VetControl</h1>
+            </div>
+          </div>
+          <div class="right-side">
+            <img
+              class="userImage"
+              src="/assets/images/User.png"
+              alt="Usuário"
+            />
+            <span class="userName">Dr. Ernandes</span>
+          </div>
+          <div class="mobile-modal-button">
+            <img src="/assets/images/burguer-icon-mobile.png" alt="Menu" />
+          </div>
+        </header>
+
+        <main>
+          <section class="appointments-list">
+            <% if (typeof agendamentos !== 'undefined' && agendamentos.length > 0) { %>
+            <% agendamentos.forEach(appointment => { %>
+              <%
+                let petImageSrc = 'default-pet.png';
+                if (appointment.pet && appointment.pet.especie) {
+                  if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
+                  else if (appointment.pet.especie === 'Gato') petImageSrc = 'cat.png';
+                  else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
+                  else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
+                }
+                
+                let petIdadeDisplay = 'N/A';
+                if (appointment.pet && appointment.pet.anoNascimento) {
+                  const anoNasc = parseInt(appointment.pet.anoNascimento);
+                  if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
+                     const idade = new Date().getFullYear() - anoNasc;
+                     petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
+                  } else if (!isNaN(anoNasc) && anoNasc >= 0) {
+                     petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
+                  }
+                }
+
+                let dataConsultaISO = ''; // Para o input date do formulário de edição
+                if (appointment.dataConsulta) {
+                    const dateObj = new Date(appointment.dataConsulta);
+                    const year = dateObj.getFullYear();
+                    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Meses são 0-indexados
+                    const day = dateObj.getDate().toString().padStart(2, '0');
+                    dataConsultaISO = `${year}-${month}-${day}`;
+                }
+                
+                let petIdForDataAttribute = appointment.pet ? appointment.pet._id : '';
+              %>
+            <div
+              class="appointment appointment-card-clickable"
+                   data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'N/A' %>"
+                   data-pet-especie-img="<%= petImageSrc %>"
+                   data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
+                   data-pet-tutor-cpf="<%= appointment.pet && appointment.pet.tutorCpf ? appointment.pet.tutorCpf : 'N/A' %>"
+                   data-pet-idade="<%= petIdadeDisplay %>"
+                   data-pet-sexo="<%= appointment.pet && appointment.pet.sexo ? appointment.pet.sexo : 'N/A' %>"
+                   data-pet-peso="<%= appointment.pet && appointment.pet.peso ? appointment.pet.peso : 'N/A' %>"
+                   data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
+                   data-tipo-consulta="<%= appointment.tipoConsulta || 'N/A' %>"
+                   data-doutor="<%= appointment.doutor || 'N/A' %>"
+                   data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>"
+                   data-data-consulta-iso="<%= dataConsultaISO %>" data-horario="<%= appointment.horario || 'N/A' %>"
+                   data-appointment-id="<%= appointment._id %>"
+                   data-pet-id="<%= petIdForDataAttribute %>" >
+            
+              <div class="pet-info">
+                <img
+                  src="/assets/images/<%= petImageSrc %>"
+                  alt="<%= appointment.pet && appointment.pet.especie ? appointment.pet.especie : 'Pet' %>"
+                />
+                <h2>
+                  <%= appointment.pet && appointment.pet.nome ?
+                  appointment.pet.nome : 'Nome Indisponível' %> (<%=
+                  appointment.pet && appointment.pet.raca ? appointment.pet.raca
+                  : 'Raça Indisponível' %>)
+                </h2>
+                <p>
+                  Tutor: <%= appointment.pet && appointment.pet.tutorNome ?
+                  appointment.pet.tutorNome : 'Tutor Indisponível' %>
+                </p>
+              </div>
+              <div class="buttons">
+                <button class="status-button"><%= appointment.status %></button>
+                <button class="consulta-type-button">
+                  <%= appointment.tipoConsulta %>
+                </button>
+              </div>
+              <div class="date-info">
+                <div>
+                  <span>Data:</span>
+                  <span
+                    ><%= new
+                    Date(appointment.dataConsulta).toLocaleDateString('pt-BR', {
+                    day: '2-digit', month: '2-digit', year: 'numeric' })
+                    %></span
+                  >
+                </div>
+                <div>
+                  <span>Horário:</span>
+                  <span><%= appointment.horario %></span>
+                </div>
+                <div>
+                  <span>Sala:</span>
+                  <span><%= appointment.sala %></span>
+                </div>
+              </div>
+              
+            </div>
+            <% }) %> <% } else { %>
+            <p>Nenhum agendamento encontrado.</p>
+            <% } %>
+          </section>
+        </main>
+      </div>
+
+      <div class="add-pet"><span>+</span></div>
+    </main>
+
+    <div class="modal-add-pet-profile" style="display: none">
+      <div class="close">X</div>
+      <div class="profile-pet-modal">
+        <p>Espécies:</p>
+        <div class="especies">
+          <img
+            class="especie"
+            id="especieGato"
+            src="/assets/images/cat.png"
+            alt="Gato"
+          />
+          <img
+            class="especie"
+            id="especieCachorro"
+            src="/assets/images/dog.png"
+            alt="Cachorro"
+          />
+          <img
+            class="especie"
+            id="especieHamster"
+            src="/assets/images/hamster.png"
+            alt="Hamster"
+          />
+          <img
+            class="especie"
+            id="especiePassaro"
+            src="/assets/images/bird.png"
+            alt="Pássaro"
+          />
+        </div>
+        <p class="error-message" id="invalid-specie">Selecione uma espécie.</p>
+      </div>
+      <form id="formAddPet">
+        <div class="appointment-form">
+          <div>
+            <label for="petNome">Nome do pet</label>
+            <input type="text" id="petNome" name="petNome" />
+            <p class="error-message" id="petNome-error-required">
+              Preencha o nome do pet.
+            </p>
+            <p class="error-message" id="invalid-pet-name-character">
+              Use apenas letras no nome.
+            </p>
+            <p class="error-message" id="invalid-pet-name-lenght">
+              O nome deve ter no mínimo 3 letras.
+            </p>
+          </div>
+          <div>
+            <label for="petAnoNascimento">Idade do Pet</label>
+            <input
+              type="number"
+              id="petAnoNascimento"
+              name="petAnoNascimento"
+            />
+            <p class="error-message" id="petAnoNascimento-error-required">
+              Preencha a idade.
+            </p>
+            <p class="error-message" id="invalid-age">
+              Coloque uma idade válida (0-100).
+            </p>
+          </div>
+          <div>
+            <label for="petRaca">Raça</label>
+            <select id="petRaca" name="petRaca" disabled>
+              <option value="">Selecione a espécie primeiro</option>
+            </select>
+            <p class="error-message">Selecione a raça.</p>
+          </div>
+          <div>
+            <label for="sexo">Sexo</label>
+            <select id="sexo" name="sexo">
+              <option value="">Selecione o sexo</option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+            <p class="error-message">Selecione o sexo.</p>
+          </div>
+          <div>
+            <label for="petPeso">Peso do pet (kg)</label>
+            <input
+              type="text"
+              maxlength="5"
+              id="petPeso"
+              name="petPeso"
+              placeholder="Ex: 5.2"
+            />
+            <p class="error-message">Preencha o peso.</p>
+          </div>
+          <div>
+            <label for="alergiasPet">Alergia</label>
+            <select id="alergiasPet" name="alergiasPet">
+              <option value="">Selecione</option>
+              <option value="Tem alergia">Tem alergia</option>
+              <option value="Não tem alergia">Não tem alergia</option>
+              <option value="Não sei">Não sei se tem alergia</option>
+            </select>
+            <p class="error-message">Informe sobre alergias.</p>
+          </div>
+          <div>
+            <label for="petVacinas">Status de Vacinação</label>
+            <select id="petVacinas" name="petVacinas">
+              <option value="">Selecione o status</option>
+              <option value="Em dia">Em dia</option>
+              <option value="Precisa tomar">Precisa tomar</option>
+              <option value="Nunca tomou">Nunca tomou</option>
+            </select>
+            <p class="error-message">Informe o status da vacinação.</p>
+          </div>
+        </div>
+        <div class="appointment-form">
+          <div>
+            <label for="tutorNome">Nome do Tutor</label>
+            <input type="text" id="tutorNome" name="tutorNome" />
+            <p class="error-message" id="tutorNome-error-required">
+              Preencha o nome do tutor.
+            </p>
+            <p class="error-message" id="invalid-name-character">
+              Use apenas letras no nome.
+            </p>
+            <p class="error-message" id="invalid-name-lenght">
+              O nome deve ter no mínimo 3 letras.
+            </p>
+          </div>
+          <div>
+            <label for="cpf">CPF</label>
+            <input
+              type="text"
+              id="cpf"
+              name="cpf"
+              maxlength="14"
+              placeholder="000.000.000-00"
+            />
+            <p class="error-message" id="cpf-error-required">Preencha o CPF.</p>
+            <p class="error-message" id="invalid-cpf">Coloque um CPF válido.</p>
+          </div>
+          <div>
+            <label for="telefone">Telefone</label>
+            <input
+              type="text"
+              id="telefone"
+              name="telefone"
+              maxlength="15"
+              placeholder="(00) 00000-0000"
+            />
+            <p class="error-message">Preencha o telefone.</p>
+          </div>
+          <div>
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" />
+            <p class="error-message" id="invalid-adress">
+              Coloque um endereço válido (mín. 5 caracteres).
+            </p>
+          </div>
+        </div>
+        <div class="appointment-form">
+          <div>
+            <label for="tipoConsulta">Tipo de Consulta</label>
+            <select id="tipoConsulta" name="tipoConsulta">
+              <option value="">Selecione uma consulta</option>
+              <option value="Consulta de Rotina">Consulta de Rotina</option>
+              <option value="Primeira Consulta">Primeira Consulta</option>
+              <option value="Consulta Especializada">
+                Consulta Especializada
+              </option>
+              <option value="Vacinação">Vacinação</option>
+              <option value="Emergência">Emergência</option>
+            </select>
+            <p class="error-message">Selecione o tipo de consulta.</p>
+          </div>
+          <div>
+            <label for="dataConsulta">Data</label>
+            <input type="date" id="dataConsulta" name="dataConsulta" />
+            <p class="error-message">Selecione a data.</p>
+          </div>
+          <div>
+            <label for="horario">Horário</label>
+            <select id="horario" name="horario">
+              <option value="">Selecione um horário</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+            </select>
+            <p class="error-message">Selecione o horário.</p>
+          </div>
+          <div>
+            <label for="doutor">Doutor(a)</label>
+            <input type="text" id="doutor" name="doutor" />
+            <p class="error-message" id="invalid-doctor">
+              Preencha com um Doutor válido (mín. 3 letras).
+            </p>
+          </div>
+          <button type="submit" >Confirmar Agendamento</button>
+        </div>
+      </form>
+    </div>
+    <!-- moda -->
+   <div id="appointmentDetailsModal" class="modal-agenda" style="display: none">
+    
+    <button class="edit-appointment" id="editAppointmentBtnInModal">
+      <img src="/assets/images/edit.png" alt="" /> Editar
+    </button>
+    <header>
+      <div> <img src="/assets/images/default-pet.png" alt="Imagem do Pet" id="modalPetImage" /> </div>
+      <div class="appointment-info">
+        <div class="info-name-pet">
+          <h2 id="modalPetNome">Nome do Pet</h2>
+          <p id="modalTutorNome">Nome do Tutor</p>
+          <p>CPF: <span id="modalTutorCpf">CPF do Tutor</span></p>
+          <p> <span id="modalPetIdade">Idade</span> - <span id="modalPetSexo">Sexo</span> - <span id="modalPetPeso">Peso</span> </p>
+        </div>
+        <h2 id="modalPetRaca">Raça</h2>
+      </div>
+    </header>
+    <div class="appointment-date">
+      <p> <span id="modalTipoConsulta">Tipo de Consulta</span> - Dr.<span id="modalDoutor">Doutor</span> </p>
+      <p> Dia - <span id="modalDataConsulta">Data</span> - <span id="modalHorario">Horário</span> </p>
+    </div>
+    <div class="buttons">
+      <button id="modalPetPerfilBtn">Perfil do Pet</button>
+      <button id="closeAppointmentDetailsModal" class="close modalCancelAppointmentBtn">Confirmar</button>
+      <!-- <button id="modalConfirmAppointmentBtn" >Confirmar</button> -->
+      <button id="modalCancelAppointmentBtn">Cancelar Consulta</button> 
+    </div>
+  </div>
+    <div class="modal-edit-appointment" id="editAppointmentModal" style="display: none;">
+    <div class="close" id="closeEditAppointmentModal">X</div>
+    <h1>Editar Agendamento</h1>
+    <form id="formEditAppointment" method="PUT">
+      <input type="hidden" id="editingAppointmentId" name="appointmentId">
+      <div class="inputs">
+        <div>
+          <p>Data</p>
+          <input type="date" name="date" id="editAppointmentDate" />
+        </div>
+        <div>
+          <p>Horário</p>
+          <select id="editAppointmentHorario" name="horario">
+            <option value="">Selecione um horário</option>
+            <option value="08:00">08:00</option> <option value="08:30">08:30</option>
+            <option value="09:00">09:00</option> <option value="09:30">09:30</option>
+            <option value="10:00">10:00</option> <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option> <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option> <option value="12:30">12:30</option>
+            <option value="14:00">14:00</option> <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option> <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option> <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option> <option value="17:30">17:30</option>
+          </select>
+        </div>
+        <div>
+          <p>Tipo de Consulta</p>
+          <select id="editAppointmentTipoConsulta" name="tipoConsulta">
+            <option value="">Selecione uma consulta</option>
+            <option value="Consulta de Rotina">Consulta de Rotina</option>
+            <option value="Primeira Consulta">Primeira Consulta</option>
+            <option value="Consulta Especializada">Consulta Especializada</option>
+            <option value="Vacinação">Vacinação</option>
+            <option value="Emergência">Emergência</option>
+          </select>
+        </div>
+        <div>
+          <p>Doutor(a)</p>
+          <input type="text" id="editAppointmentDoutor" name="doutor" />
+        </div>
+      </div>
+      <button type="submit" class="new-appointment-button">Confirmar Alterações</button>
+    </form>
+  </div>
+    <script src="/js/modalAgenda.js" defer></script>
+    <script src="/js/sideBar.js" defer></script>
+  </body>
+</html>

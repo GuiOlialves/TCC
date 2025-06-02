@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/lista-pet.css" />
+    <link rel="stylesheet" href="/assets/css/modal.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <title>VetControl - Lista de Pets</title>
+  </head>
+  <body>
+    <main>
+      <section class="side-bar">
+        <div class="logo">
+          <img
+            src="/assets/images/logo.png"
+            class="imagem"
+            alt="Logo VetControl"
+          />
+        </div>
+        <nav>
+          <a href="/lista-pets"
+            ><img src="/assets/images/home.png" alt="Lista de Pets" />Lista de
+            Pets</a
+          >
+          <a href="/agenda"
+            ><img src="/assets/images/calendar.png" alt="Agenda" />Agenda</a
+          >
+          <a href="/estoque"
+            ><img src="/assets/images/stock.png" alt="Estoque" />Estoque</a
+          >
+          <a href="/financeiro"
+            ><img src="/assets/images/finance.png" alt="Financeiro" />Painel
+            Financeiro</a
+          >
+          <a href="/relatorios"
+            ><img
+              src="/assets/images/relatorios.png"
+              alt="Relatórios"
+            />Relatórios</a
+          >
+        </nav>
+      </section>
+
+      <div class="main2">
+        <header class="top-bar">
+          <div class="left-side">
+            <div class="logo">
+              <h1>VetControl</h1>
+            </div>
+          </div>
+          <div class="right-side">
+            <img
+              class="userImage"
+              src="/assets/images/User.png"
+              alt="Usuário"
+            />
+            <span class="userName">Dr. Ernandes</span>
+          </div>
+          <div class="mobile-modal-button">
+            <img src="/assets/images/burguer-icon-mobile.png" alt="Menu" />
+          </div>
+        </header>
+
+        <main>
+          <form action="/lista-pets" method="GET" class="search-form">
+            <div class="search">
+              <input
+                id="searchInput"
+                name="search"
+                type="text"
+                placeholder="Pesquisar por nome, tutor, raça..."
+                value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+              />
+              <button id="searchButton" type="submit">
+                <img src="/assets/images/search.png" alt="Pesquisar" />
+              </button>
+            </div>
+          </form>
+
+          <section class="info-pets-list" id="cards-container">
+          <% if (typeof pets !== 'undefined' && pets.length > 0) { %>
+            <% pets.forEach(pet => { %>
+              <% 
+                let imagemPetLista = 'default-pet.png';
+                if (pet.especie === 'Gato') imagemPetLista = 'cat.png';
+                else if (pet.especie === 'Cachorro') imagemPetLista = 'dog.png';
+                else if (pet.especie === 'Pássaro') imagemPetLista = 'bird.png';
+                else if (pet.especie === 'Hamster') imagemPetLista = 'hamster.png';
+
+                let idadeDisplayLista = 'N/A';
+                if (pet.anoNascimento) {
+                  const anoNascLista = parseInt(pet.anoNascimento);
+                  if (!isNaN(anoNascLista) && anoNascLista > 0 && anoNascLista.toString().length === 4) {
+                     const idadeCalc = new Date().getFullYear() - anoNascLista;
+                     idadeDisplayLista = idadeCalc === 0 ? 'Menos de 1 ano' : idadeCalc + (idadeCalc === 1 ? ' ano' : ' anos');
+                  } else if (!isNaN(anoNascLista) && anoNascLista >= 0) {
+                     idadeDisplayLista = anoNascLista + (anoNascLista === 1 ? ' ano' : ' anos');
+                  }
+                }
+              %>
+              <div class="pet-card" 
+                   data-pet-id="<%= pet._id %>"
+                   data-nome="<%= pet.nome %>"
+                   data-especie="<%= pet.especie %>"
+                   data-raca="<%= pet.raca %>"
+                   data-tutor-nome="<%= pet.tutorNome %>"
+                   data-sexo="<%= pet.sexo || 'N/A' %>"
+                   data-idade-display="<%= idadeDisplayLista %>" data-ano-nascimento="<%= pet.anoNascimento || '' %>" data-peso="<%= pet.peso || 'N/A' %>" 
+                   data-imagem-src-arquivo="<%= imagemPetLista %>"
+                   data-alergias="<%= pet.alergias || 'Não informado' %>"
+                   data-status-vacinas="<%= pet.statusVacinas || 'Não informado' %>"
+                   data-tutor-cpf="<%= pet.tutorCpf || 'N/A' %>"
+                   data-tutor-telefone="<%= pet.tutorTelefone || '' %>"
+                   data-tutor-endereco="<%= pet.tutorEndereco || '' %>"
+                   >
+                <div class="pet-profile">
+                  <img src="/assets/images/<%= imagemPetLista %>" alt="<%= pet.especie %>" />
+                  <h2><%= pet.nome %></h2>
+                </div>
+                <p>Espécie: <span><%= pet.especie %></span></p>
+                <p>Raça: <span><%= pet.raca %></span></p>
+                <p>Tutor: <span><%= pet.tutorNome %></span></p>
+                <p>Sexo: <span><%= pet.sexo || 'N/A' %></span></p>
+                <p>Idade: <span><%= idadeDisplayLista %></span></p>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>Nenhum pet cadastrado.</p>
+            <% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+              <p>Nenhum pet encontrado para o termo: "<%= searchQuery %>".</p>
+            <% } %>
+          <% } %>
+        </section>
+        </main>
+      </div>
+    </main>
+
+<% if (typeof highlightPetId !== 'undefined' && highlightPetId) { %>
+    <script>
+      window.highlightedPetIdFromAgenda = "<%= highlightPetId %>";
+      console.log("lista-pets.ejs: Pet ID destacado da agenda:", window.highlightedPetIdFromAgenda);
+    </script>
+  <% } %>
+
+    <script src="/js/modalListaPet.js" defer></script>
+    <script src="/js/sideBar.js" defer></script>
+  </body>
+</html>

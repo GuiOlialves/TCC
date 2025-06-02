@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+    <title>VetControl</title>
+  </head>
+
+  <body>
+    <main>
+      <section class="section-logo">
+        <img src="assets/images/logo2.png" alt="" />
+        <p>O melhor gerenciador de veterinário</p>
+      </section>
+      <div class="line"></div>
+      <form action="/entrar" method="post" id="form">
+        <h1>Login</h1>
+        <input type="text" placeholder="Login" id="userInput" name="user" />
+        <input type="password" placeholder="Senha" id="passwordInput" name="password" />
+        <button>Entrar</button>
+      </form>
+    </main>
+    <script src="/js/login.js"></script>
+  </body>
+</html>

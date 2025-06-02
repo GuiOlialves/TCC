@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/modal.css" />
+    <link rel="stylesheet" href="../../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../../assets/css/estoque.css" />
+    <title>VetControl - Lista de Pets</title>
+  </head>
+
+  <body>
+    <main>
+      <section class="side-bar">
+        <div class="logo">
+          <img src="../../assets/images/logo.png" class="imagem" alt="" />
+        </div>
+        <nav>
+          <a href="lista-pets"
+            ><img src="../../assets/images/home.png" alt="" />Lista de Pets</a
+          >
+          <a href="agenda"
+            ><img src="../../assets/images/calendar.png" alt="" />Agenda</a
+          >
+          <a href="estoque"
+            ><img src="../../assets/images/stock.png" alt="" />Estoque</a
+          >
+          <a href="financeiro"
+            ><img src="../../assets/images/finance.png" alt="" />Painel
+            Financeiro</a
+          >
+          <a href="relatorios"
+            ><img
+              src="../../assets/images/relatorios.png"
+              alt=""
+            />Relátorios</a
+          >
+        </nav>
+      </section>
+
+      <div class="main2">
+        <header class="top-bar">
+          <div class="left-side">
+            <div class="logo">
+              <div class="imagem"></div>
+              <h1>VetControl</h1>
+            </div>
+          </div>
+          <div class="right-side">
+            <img class="userImage" src="../../assets/images/User.png" alt="" />
+            <span class="userName">Dr.Ernandes</span>
+          </div>
+          <div class="mobile-modal-button">
+            <img src="../../assets/images/burguer-icon-mobile.png" alt="" />
+          </div>
+        </header>
+        <main>
+          <button class="add-item">Adicionar Item</button>
+          <section class="table-stock">
+            <header>
+              <p>Nome</p>
+              <p>Categoria</p>
+              <p>Preço</p>
+              <p>Quantidade</p>
+            </header>
+            <div class="lines">
+              <% estoque.forEach(item => { %> <% const categoriaIcones = {
+              "Vacina": "vacina.png", "Ração": "racao.png", "Medicamento":
+              "medicamento.png" }; const icone =
+              categoriaIcones[item.newItemCategory] || "padrao.png"; %>
+             <div class="item"> 
+                <div class="nome">
+                  <img src="../../assets/images/<%= icone %>" alt="" />
+                  <p> <%= item.newItemName %> </p>
+                </div>
+                <div class="categoria">
+                  <p><%= item.newItemCategory%></p>
+                </div>
+                <div class="preco">
+                  <p>R$<%= item.newItemPrice %>,00</p>
+                </div>
+                <div class="quantidade">
+                  <p><%=  item.newItemQuantity%></p>
+                  <button class="edit-button"
+        data-id="<%= item._id %>"
+        data-name="<%= item.newItemName %>"
+        data-category="<%= item.newItemCategory %>"
+        data-price="<%= item.newItemPrice %>"
+        data-quantity="<%= item.newItemQuantity %>">
+  <img src="../../assets/images/edit.png" alt="Editar" />
+                  </button>
+                </div>
+             </div>
+              <% }) %>
+             
+             
+                
+                
+              </div>
+            </div>
+          </section>
+        </main>
+        <div class="modal-add-item stock">
+          <div class="close">X</div>
+          <h2>Adicione um item ao estoque</h2>
+          <form action="/estoque" method="post" id="addStockItem">
+            <div class="table-add">
+              <div class="colunm-item">
+                <p>Nome</p>
+                <input type="text" id="newItemName" name="name" />
+              </div>
+              <div class="colunm-item">
+                <p>Categoria</p>
+                <select name="" id="newItemCategory" name="category">
+                  <option value="">Selecione a categoria</option>
+                  <option value="Vacina">Vacina</option>
+                  <option value="Ração">Ração</option>
+                  <option value="Medicament s">Medicamento</option>
+                </select>
+              </div>
+              <div class="colunm-item">
+                <p>Preço</p>
+                <input type="number" id="newItemPrice" name="price" />
+              </div>
+              <div class="colunm-item" style="border: none">
+                <p>Quantidade</p>
+                <input type="number" id="newItemQuantity" name="quantity" />
+              </div>
+            </div>
+            <button type="submit">Adicionar</button>
+          </form>
+        </div>
+
+        <div class="modal-edit-item stock" style="display: none">
+  <div class="close-edit">X</div>
+  <h2>Editar item do estoque</h2>
+  <form id="editStockItem">
+    <input type="hidden" id="editItemId">
+    <div class="table-edit">
+      <div class="colunm-item">
+        <p>Nome</p>
+        <input type="text" id="editItemName" />
+      </div>
+      <div class="colunm-item">
+        <p>Categoria</p>
+        <select id="editItemCategory">
+          <option value="">Selecione a categoria</option>
+          <option value="Vacina">Vacina</option>
+          <option value="Ração">Ração</option>
+          <option value="Medicamento">Medicamento</option>
+        </select>
+      </div>
+      <div class="colunm-item">
+        <p>Preço</p>
+        <input type="number" id="editItemPrice" />
+      </div>
+      <div class="colunm-item">
+        <p>Quantidade</p>
+        <input type="number" id="editItemQuantity" />
+      </div>
+    </div>
+    <button type="submit">Confirmar</button>
+  </form>
+</div>
+      </div>
+    </main>
+    <script src="../js/modalEstoque.js"></script>
+    <script src="../js/sideBar.js"></script>
+  </body>
+</html>

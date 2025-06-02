@@ -1,0 +1,114 @@
+.add-item{
+    width: 190px;
+    position: relative;
+    left: 75%;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 25px;
+    border: none;
+    background-color: var(--button);
+    color: white;
+    border: 1px solid var(--button);
+    transition: 0.2s;
+}
+
+.add-item:hover{
+    background-color: transparent;
+}
+
+.table-stock{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 25px;
+    color: var(--white);
+}
+
+.lines{
+    overflow-y: auto;
+    max-height: 400px;
+    padding-right: 30px;
+}
+
+.lines::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lines::-webkit-scrollbar-thumb {
+    background: var(--gray-500);
+    border-radius: 4px;
+}
+
+.lines::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-stock .table-colunm{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-stock header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: var(--blue-800);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.table-stock header p{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.table-stock .item{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    min-height: 56px;
+}
+
+.table-stock .item .quantidade{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-stock .item div{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-stock .item .nome img{
+    width: 40px;
+    height: 40px;
+}
+
+.table-stock .item .nome p{
+    margin-left: 10px;
+}
+
+.table-stock button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+.table-stock button img{
+    width: 25px;
+    height: 25px;
+}
+
+.table-stock .item .quantidade p{
+    margin-left: 100px;
+}
