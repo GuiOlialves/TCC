@@ -1,6 +1,6 @@
 const buttonAddItem = document.querySelector(".add-item");
 const modalAddItem = document.querySelector(".modal-add-item");
-const closeModal = document.querySelector(".close");
+const closeModal = document.querySelector(".close-modal");
 const addStockItem = document.getElementById("addStockItem");
 const buttonsEdit = document.querySelectorAll(".item button");
 const modalEditItem = document.querySelector(".modal-edit-item");

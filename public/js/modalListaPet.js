@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalDashboard.classList.add("modal-dashboard", "modal-dashboard-lista-pet"); // Adicionando classe específica
 
     const closeButton = document.createElement("div");
-    closeButton.classList.add("close");
+    closeButton.classList.add("close-modal");
     closeButton.textContent = "X";
     closeButton.addEventListener("click", () => modalDashboard.remove());
     modalDashboard.appendChild(closeButton);
@@ -67,29 +67,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const profilePetModal = document.createElement("div");
     profilePetModal.classList.add("profile-pet-modal");
 
+    const petInfoModal = document.createElement("div");
+    const petInfoModalName = document.createElement('div');
     const petImage = document.createElement("img");
     petImage.src = `/assets/images/${petData.imagemSrcArquivo || 'default-pet.png'}`; // Usa o data attribute
     petImage.alt = `Foto de ${petData.nome || 'Pet'}`;
-    profilePetModal.appendChild(petImage);
+    petInfoModal.appendChild(petImage);
+    petInfoModal.appendChild(petInfoModalName);
 
-    const petInfoModal = document.createElement("div");
     petInfoModal.classList.add("pet-info-modal");
+    petInfoModalName.classList.add('pet-info-modal-name')
 
     const petName = document.createElement("h3");
     petName.textContent = petData.nome || 'Nome Indisponível';
-    petInfoModal.appendChild(petName);
+    petInfoModalName.appendChild(petName);
 
     const petDetails = document.createElement("p");
     petDetails.innerHTML = `<span>${petData.idadeDisplay || 'Idade N/A'}</span> - <span>${petData.sexo || 'Sexo N/A'}</span> - <span>${petData.peso || 'Peso N/A'}</span>`;
-    petInfoModal.appendChild(petDetails);
+    petInfoModalName.appendChild(petDetails);
     profilePetModal.appendChild(petInfoModal);
 
     const petBreed = document.createElement("h3");
-    petBreed.textContent = petData.raca || 'Raça Indisponível';
+    petBreed.textContent = "Raça: "+petData.raca || 'Raça Indisponível';
     profilePetModal.appendChild(petBreed);
 
     const ownerName = document.createElement("h3");
-    ownerName.textContent = petData.tutorNome || 'Tutor Indisponível';
+    ownerName.textContent ="Tutor: "+ petData.tutorNome || 'Tutor Indisponível';
     profilePetModal.appendChild(ownerName);
     modalDashboard.appendChild(profilePetModal);
 
@@ -150,11 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleDiv = document.createElement("div");
     titleDiv.classList.add("title"); // Mantendo sua estrutura
     const titleIcon = document.createElement("img");
-    titleIcon.src = "/assets/images/new-appointment.png"; // Ajuste o caminho se necessário
+    titleIcon.src = "/assets/images/novo-agendamento.png"; // Ajuste o caminho se necessário
     titleIcon.alt = "Ícone de novo agendamento";
     const titleText = document.createElement("h1");
     titleText.appendChild(titleIcon);
-    titleText.appendChild(document.createTextNode("Novo Agendamento para Este Pet"));
+    titleText.appendChild(document.createTextNode("Novo Agendamento"));
     titleDiv.appendChild(titleText);
     newAppointmentSection.appendChild(titleDiv);
 

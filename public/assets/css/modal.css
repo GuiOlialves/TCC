@@ -1,5 +1,9 @@
 .modal-dashboard{
-    width: 45rem;
+    width: 50rem;
+    min-height: 32rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -11,28 +15,28 @@
     opacity: 1 !important;
 }
 
-/* .close{
+.close-modal, .close-edit{
     position: relative;
     left: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     color: var(--white);
     border-radius: 100%;
-    font-size: 10px;
+    font-size: 14px;
     cursor: pointer;
     transition: 0.2s;
-} */
+}
 
-.close:hover{
+.close-modal:hover, .close-edit:hover{
     background-color: var(--gray-500);
 }
 
 .modal-dashboard .profile-pet-modal{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 30px;
 }
@@ -45,10 +49,29 @@
     border-radius: 50px;
 }
 
+.modal-dashboard .pet-info-modal{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal-dashboard .record-of-pet{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 20px 0; 
+}
+
+.modal-dashboard .record-of-pet div{
+    max-width: 200px;
+}
+
 .modal-dashboard .new-appointment h1{
     display: flex;
     align-items: center;
     font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .modal-dashboard .new-appointment{
@@ -75,10 +98,11 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-.modal-dashboard .new-appointment form .inputs input{
+.modal-dashboard .new-appointment form .inputs input, .modal-dashboard .new-appointment form .inputs select{
     border-radius: 5px;
     padding: 4px;
     border: none;
@@ -177,32 +201,32 @@
     transition: 0.2s;
 }
 
-.modal-agenda .buttons button#pet-perfil{
+.modal-agenda .buttons button#modalPetPerfilBtn{
     background-color: rgba(255, 255, 255, 0.5);
     color: white;
 }
 
-.modal-agenda .buttons button#pet-perfil:hover{
+.modal-agenda .buttons button#modalPetPerfilBtn:hover{
     color: black;
     background-color: rgb(236, 233, 233);
 }
 
-.modal-agenda .buttons button#confirm-appointment{
+.modal-agenda .buttons button#closeAppointmentDetailsModal{
     color: #3B9943;
     background-color: #3B994380;
 }
 
-.modal-agenda .buttons button#confirm-appointment:hover{
+.modal-agenda .buttons button#closeAppointmentDetailsModal:hover{
     background-color: #3B9943;
     color: rgb(247, 237, 237);
 }
 
-.modal-agenda .buttons button#cancel-appointment{
+.modal-agenda .buttons button#modalCancelAppointmentBtn{
     background-color: #8B2E2E;
     color: #FFB3B3;
 }
 
-.modal-agenda .buttons button#cancel-appointment:hover{
+.modal-agenda .buttons button#modalCancelAppointmentBtn:hover{
     background-color: #d84949;
     color: rgb(247, 237, 237);
 }
