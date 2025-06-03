@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalAddProfilePet = document.querySelector(".modal-add-pet-profile");
   const mainContent = document.querySelector("main");
   const dateInputs = document.querySelectorAll("input[type=date]"); // Usado para data mínima
-  const modalAddProfilePetCloseButton = document.querySelector(".modal-add-pet-profile .close");
+  const modalAddProfilePetCloseButton = document.querySelector(".modal-add-pet-profile .close-modal");
   const formAddPet = document.getElementById("formAddPet");
   const especieImageElements = document.querySelectorAll(".especie"); // Imagens clicáveis das espécies
   const petRacaSelect = document.getElementById("petRaca");
