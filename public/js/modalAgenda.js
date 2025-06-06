@@ -361,10 +361,63 @@ if (appointmentCards && appointmentCards.length > 0 && appointmentDetailsModal) 
   }
 
   // --- LÓGICA PARA MODAL DE ADICIONAR PET/AGENDAMENTO (Mantida) ---
-  const especiesGato = {0:"Selecione a Raça",1:"Persa",/*...*/10:"Sem raça definida"};
-  const especiesCachorro = {0:"Selecione a Raça",1:"Labrador",/*...*/18:"Sem raça definida"};
-  const especiesPassaro = {0:"Selecione a Raça",1:"Papagaio",/*...*/10:"Arara"};
-  const especiesHamster = {0:"Selecione a Raça",1:"Porquinho-da-índia",/*...*/7:"Camundongo"};
+  const especiesGato = {
+    0: "Selecione a Raça",
+    1: "Persa",
+    2: "Maine Coon",
+    3: "Siamês",
+    4: "Bengal",
+    5: "Sphynx",
+    6: "Ragdoll",
+    7: "Birman",
+    8: "Scottish Fold",
+    9: "Britânico de Pelo Curto",
+    10: "Sem raça definida",
+  };
+  const especiesCachorro = {
+    0: "Selecione a Raça",
+    1: "Labrador",
+    2: "Poodle",
+    3: "Bulldog",
+    4: "Beagle",
+    5: "Golden Retriever",
+    6: "Chihuahua",
+    7: "Shih Tzu",
+    8: "Pastor Alemão",
+    9: "Boxer",
+    10: "Dachshund",
+    11: "Yorkshire Terrier",
+    12: "Cocker Spaniel",
+    13: "Maltês",
+    14: "Rottweiler",
+    15: "Doberman",
+    16: "Pinscher",
+    17: "Husky Siberiano",
+    18: "Sem raça definida",
+  };
+  const especiesPassaro = {
+    0: "Selecione a Raça",
+    1: "Papagaio",
+    2: "Periquito",
+    3: "Calopsita",
+    4: "Ninfa",
+    5: "Agapornis",
+    6: "Canário",
+    7: "Cacatua",
+    8: "Curió",
+    9: "Tico-tico",
+    10: "Arara",
+  };
+  const especiesHamster = {
+    0: "Selecione a Raça",
+    1: "Porquinho-da-índia",
+    2: "Hamster",
+    3: "Coelho",
+    4: "Gerbil",
+    5: "Chinchila",
+    6: "Degus",
+    7: "Camundongo",
+  };
 
   const dataAtual = new Date();
   let diaAtual = dataAtual.getDate();
@@ -396,6 +449,7 @@ if (appointmentCards && appointmentCards.length > 0 && appointmentDetailsModal) 
       }
       especieSelectedId = "";
       mainContent.classList.add("invisible");
+      
     });
   }
 

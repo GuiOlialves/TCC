@@ -1,11 +1,11 @@
-/* Em public/assets/css/agenda.css */
 
-/* 1. DESATIVAR O LAYOUT ANTIGO (COMO VOCÊ FEZ, CORRETO) */
+
+
 .appointments-list {
     display: none;
 }
 
-/* 2. ESTILOS PARA O KANBAN (SEUS ESTILOS, ESTÃO BONS) */
+
 .kanban-board {
     display: flex;
     gap: 20px;
