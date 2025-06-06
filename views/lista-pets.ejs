@@ -85,60 +85,85 @@
             </div>
           </form>
 
-          <section class="info-pets-list" id="cards-container">
-          <% if (typeof pets !== 'undefined' && pets.length > 0) { %>
-            <% pets.forEach(pet => { %>
-              <% 
-                let imagemPetLista = 'default-pet.png';
-                if (pet.especie === 'Gato') imagemPetLista = 'cat.png';
-                else if (pet.especie === 'Cachorro') imagemPetLista = 'dog.png';
-                else if (pet.especie === 'Pássaro') imagemPetLista = 'bird.png';
-                else if (pet.especie === 'Hamster') imagemPetLista = 'hamster.png';
+<div class="table-container">
+            <table class="pets-table">
+                <thead>
+                    <tr>
+                        <th>Nome do Pet</th>
+                        <th>Espécie</th>
+                        <th>Raça</th>
+                        <th>Tutor</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof pets !== 'undefined' && pets.length > 0) { %>
+                        <% pets.forEach(pet => { %>
+                            <%
+                                // Bloco de preparação de variáveis para este pet específico
+                                let petImageSrc = 'default-pet.png'; // Imagem padrão
+                                if (pet.especie) {
+                                    const especieLower = pet.especie.toLowerCase();
+                                    if (especieLower === 'cachorro') petImageSrc = 'dog.png';
+                                    else if (especieLower === 'gato') petImageSrc = 'cat.png';
+                                    else if (especieLower === 'pássaro') petImageSrc = 'bird.png'; // Exemplo
+                                    else if (especieLower === 'hamster') petImageSrc = 'hamster.png'; // Exemplo
+                                    // Adicione mais 'else if' para outras espécies se tiver ícones específicos
+                                }
 
-                let idadeDisplayLista = 'N/A';
-                if (pet.anoNascimento) {
-                  const anoNascLista = parseInt(pet.anoNascimento);
-                  if (!isNaN(anoNascLista) && anoNascLista > 0 && anoNascLista.toString().length === 4) {
-                     const idadeCalc = new Date().getFullYear() - anoNascLista;
-                     idadeDisplayLista = idadeCalc === 0 ? 'Menos de 1 ano' : idadeCalc + (idadeCalc === 1 ? ' ano' : ' anos');
-                  } else if (!isNaN(anoNascLista) && anoNascLista >= 0) {
-                     idadeDisplayLista = anoNascLista + (anoNascLista === 1 ? ' ano' : ' anos');
-                  }
-                }
-              %>
-              <div class="pet-card" 
-                   data-pet-id="<%= pet._id %>"
-                   data-nome="<%= pet.nome %>"
-                   data-especie="<%= pet.especie %>"
-                   data-raca="<%= pet.raca %>"
-                   data-tutor-nome="<%= pet.tutorNome %>"
-                   data-sexo="<%= pet.sexo || 'N/A' %>"
-                   data-idade-display="<%= idadeDisplayLista %>" data-ano-nascimento="<%= pet.anoNascimento || '' %>" data-peso="<%= pet.peso || 'N/A' %>" 
-                   data-imagem-src-arquivo="<%= imagemPetLista %>"
-                   data-alergias="<%= pet.alergias || 'Não informado' %>"
-                   data-status-vacinas="<%= pet.statusVacinas || 'Não informado' %>"
-                   data-tutor-cpf="<%= pet.tutorCpf || 'N/A' %>"
-                   data-tutor-telefone="<%= pet.tutorTelefone || '' %>"
-                   data-tutor-endereco="<%= pet.tutorEndereco || '' %>"
-                   >
-                <div class="pet-profile">
-                  <img src="/assets/images/<%= imagemPetLista %>" alt="<%= pet.especie %>" />
-                  <h2><%= pet.nome %></h2>
-                </div>
-                <p>Espécie: <span><%= pet.especie %></span></p>
-                <p>Raça: <span><%= pet.raca %></span></p>
-                <p>Tutor: <span><%= pet.tutorNome %></span></p>
-                <p>Sexo: <span><%= pet.sexo || 'N/A' %></span></p>
-                <p>Idade: <span><%= idadeDisplayLista %></span></p>
-              </div>
-            <% }) %>
-          <% } else { %>
-            <p class="appointment-charizard">Nenhum pet cadastrado...</p>
-            <% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
-              <p>Nenhum pet encontrado para o termo: "<%= searchQuery %>".</p>
-            <% } %>
-          <% } %>
-        </section>
+                                let petIdadeDisplay = 'N/A';
+                                if (pet.anoNascimento) {
+                                    const anoNasc = parseInt(pet.anoNascimento);
+                                    if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) { // Verifica se é um ano válido
+                                        const idade = new Date().getFullYear() - anoNasc;
+                                        petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : (idade + (idade === 1 ? ' ano' : ' anos'));
+                                    } else if (!isNaN(anoNasc) && anoNasc >= 0) { // Caso a idade já venha calculada (ex: 0, 1, 2)
+                                         petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
+                                    }
+                                }
+                            %>
+                            <tr class="pet-row"
+                                data-pet-id="<%= pet._id %>"
+                                data-nome="<%= pet.nome %>"
+                                data-especie="<%= pet.especie %>"
+                                data-raca="<%= pet.raca %>"
+                                data-sexo="<%= pet.sexo %>"
+                                data-ano-nascimento="<%= pet.anoNascimento %>"
+                                data-idade-display="<%= petIdadeDisplay %>"
+                                data-peso="<%= pet.peso || 'N/A' %>"
+                                data-alergias="<%= pet.alergias || 'Não informado' %>"
+                                data-status-vacinas="<%= pet.statusVacinas || 'Não informado' %>"
+                                data-tutor-nome="<%= pet.tutorNome %>"
+                                data-tutor-cpf="<%= pet.tutorCpf || 'N/A' %>"
+                                data-tutor-telefone="<%= pet.tutorTelefone || 'N/A' %>"
+                                data-tutor-endereco="<%= pet.tutorEndereco || 'N/A' %>"
+                                data-imagem-src-arquivo="<%= petImageSrc %>">
+                                
+                                <td>
+                                    <div class="pet-name-cell">
+                                        <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= pet.especie %>">
+                                        <span><%= pet.nome %></span>
+                                    </div>
+                                </td>
+                                <td><%= pet.especie %></td>
+                                <td><%= pet.raca %></td>
+                                <td><%= pet.tutorNome %></td>
+                                <td><%= pet.tutorTelefone || 'N/A' %></td>
+                                <td>
+                                    <button class="action-btn view-profile">Ver Perfil</button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } %>
+                    <% if (typeof pets === 'undefined' || pets.length === 0) { %>
+                        <tr>
+                            <td colspan="6" class="empty-state">Nenhum pet encontrado.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
         </main>
       </div>
     </main>

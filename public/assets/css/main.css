@@ -1,3 +1,4 @@
+/* Em public/assets/css/main.css - SEU CÓDIGO ORIGINAL FORNECIDO */
 *{
     box-sizing: border-box;
     margin: 0;
@@ -5,18 +6,32 @@
     font-family: "Roboto", sans-serif; 
 }
 
-:root{
-    --blue-800: #0F172A;
-    --blue-700: #1E293B;
+:root {
+    /* Suas cores base */
+    --blue-900: #0F172A; 
+    --blue-800: #1E293B; 
+    --blue-400: #479bd8; 
+    
+    /* Suas cores neutras */
+    --gray-400: #94A3B8; 
+    --gray-200: #E2E8F0; 
+    --white: #F8FAFC;    
 
-    --gray-500: #94A3B8;
-    --gray-400: #D9D9D9;
-    --gray-200: #F8FAFC;
+    /* Suas cores de feedback */
+    --success: #10B981;  
+    --warning: #F59E0B;  
+    --danger: #EF4444;   
 
+    /* Adicionando a variável --gray-500 que estava no seu CSS original para a sidebar */
+    --gray-500: #94A3B8; /* Ou a cor específica que você usava, como #6B7280 */
+     /* Adicionando a variável --button que estava no seu CSS original */
     --button: #479bd8;
+}
 
-    --white: #fff;
-
+/* Seu ajuste no body original */
+body {
+    background-color: var(--blue-900); /* Cor do seu :root, antes era --blue-700 */
+    color: var(--white);
 }
 
 input[type=number]::-webkit-inner-spin-button { 
@@ -37,19 +52,18 @@ input{
     outline: none;
 }
 
-body{
-    background-color: var(--blue-700);
-}
-
+/* Seu .main2 original */
 .main2{
     width: 100%;
 }
 
+/* Seu .main2 main original */
 .main2 main{
     display: flex;
     flex-direction: column;
 }
 
+/* Seu header.top-bar original */
 header.top-bar{
     min-height: 80px;
     display: flex;
@@ -57,7 +71,7 @@ header.top-bar{
     background-color: var(--blue-800);
     justify-content: space-between;
     padding: 1.5rem;
-    color: white;
+    color: white; /* Mantendo 'white' do seu original, em vez de var(--white) */
 }
 
 header.top-bar .left-side{
@@ -79,28 +93,29 @@ header.top-bar .right-side{
     margin-right: 20px;
 }
 
+/* Seu .logo original (da sidebar) */
 .logo{
     display: flex;
     align-items: center;
     padding: 1rem;
-    color: white;
+    color: white; /* Mantendo 'white' do seu original */
 }
 
-.imagem{
+.imagem{ /* Imagem da logo na sidebar */
     margin-right: 20px;
 }
 
-header .userName{
+header.top-bar .userName{
     font-size: 12px;
 }
 
-header .userImage{
+header.top-bar .userImage{
     width: 15px;
     height: 15px;
     margin-right: 10px;
 }
 
-header input{
+header.top-bar input{
     width: 17rem;
     padding: 3px 10px;
     height: 2rem;
@@ -108,6 +123,7 @@ header input{
     border: none;
 }
 
+/* Seu <main> principal original */
 main{
     display: flex;
 }
@@ -116,6 +132,7 @@ main{
     opacity: 0.5;
 }
 
+/* Sua .side-bar original */
 .side-bar{
     width: 90px;
     height: 100vh;
@@ -123,7 +140,7 @@ main{
     position: sticky;
     top: 0;
     transition: width 0.4s ease;
-    /* overflow: hidden; */
+    /* overflow: hidden; Comentado no seu original */
 }
 
 .side-bar nav{
@@ -135,7 +152,7 @@ main{
 }
 
 .side-bar nav a{
-    color: var(--gray-500);
+    color: var(--gray-500); /* Usando --gray-500 como no seu original para links */
     text-decoration: none;
     font-size: 17px;
     margin-bottom: 30px;

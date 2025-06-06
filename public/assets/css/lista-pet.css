@@ -1,20 +1,86 @@
-.info-pets-list{
-    display: flex;
-    flex-wrap: wrap;
+.info-pets-list { display: none; } /* Desativa o layout de cards antigo */
+
+.search-container {
+    padding: 25px 25px 0 25px;
 }
 
-.pet-card{
-    cursor: pointer;
-    width: 15.625rem;
-    max-height: 20rem;
-    margin-top: 3.125rem;
-    margin-left: 3.125rem;
-    color: var(--white);
+/* Ajuste no search para ocupar mais espaço */
+.search {
+    margin-left: 0; /* Remove a margem antiga */
+}
+
+.table-container {
+    padding: 25px;
+}
+
+.pets-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaço entre células */
     background-color: var(--blue-800);
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+    overflow: hidden; /* Garante que o border-radius seja aplicado nas pontas */
+    color: var(--white);
 }
 
+.pets-table thead tr {
+    background-color: var(--blue-900);
+    text-align: left;
+    font-weight: bold;
+}
+
+.pets-table th, .pets-table td {
+    padding: 16px 20px;
+}
+
+.pets-table tbody tr {
+    border-bottom: 1px solid var(--blue-900);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pets-table tbody tr:hover {
+    background-color: #2a3a55; /* Um tom um pouco mais claro */
+}
+
+.pets-table tbody tr:last-of-type {
+    border-bottom: none;
+}
+
+.pet-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pet-name-cell img {
+    width: 32px;
+    height: 32px;
+    background-color: var(--white);
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.action-btn {
+    background-color: var(--blue-400);
+    color: var(--white);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #357ab8; /* Tom mais escuro do azul */
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray-400);
+    font-style: italic;
+}
 .pet-card .pet-profile{
     display: flex;
     align-items: center;

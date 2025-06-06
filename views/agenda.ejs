@@ -69,107 +69,244 @@
           </div>
         </header>
 
-        <main>
-          <section class="appointments-list">
-            <% if (typeof agendamentos !== 'undefined' && agendamentos.length > 0) { %>
-            <% agendamentos.forEach(appointment => { %>
-              <%
-                let petImageSrc = 'default-pet.png';
-                if (appointment.pet && appointment.pet.especie) {
-                  if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
-                  else if (appointment.pet.especie === 'Gato') petImageSrc = 'cat.png';
-                  else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
-                  else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
-                }
-                
-                let petIdadeDisplay = 'N/A';
-                if (appointment.pet && appointment.pet.anoNascimento) {
-                  const anoNasc = parseInt(appointment.pet.anoNascimento);
-                  if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
-                     const idade = new Date().getFullYear() - anoNasc;
-                     petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
-                  } else if (!isNaN(anoNasc) && anoNasc >= 0) {
-                     petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
-                  }
-                }
+        
+          <main> <!-- Ou a tag que você usa para o conteúdo principal -->
+    <% if (typeof agendamentos !== 'undefined' && agendamentos.length > 0) { %>
 
-                let dataConsultaISO = ''; // Para o input date do formulário de edição
-                if (appointment.dataConsulta) {
-                    const dateObj = new Date(appointment.dataConsulta);
-                    const year = dateObj.getFullYear();
-                    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Meses são 0-indexados
-                    const day = dateObj.getDate().toString().padStart(2, '0');
-                    dataConsultaISO = `${year}-${month}-${day}`;
-                }
-                
-                let petIdForDataAttribute = appointment.pet ? appointment.pet._id : '';
-              %>
-            <div
-              class="appointment appointment-card-clickable"
-                   data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'N/A' %>"
-                   data-pet-especie-img="<%= petImageSrc %>"
-                   data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
-                   data-pet-tutor-cpf="<%= appointment.pet && appointment.pet.tutorCpf ? appointment.pet.tutorCpf : 'N/A' %>"
-                   data-pet-idade="<%= petIdadeDisplay %>"
-                   data-pet-sexo="<%= appointment.pet && appointment.pet.sexo ? appointment.pet.sexo : 'N/A' %>"
-                   data-pet-peso="<%= appointment.pet && appointment.pet.peso ? appointment.pet.peso : 'N/A' %>"
-                   data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
-                   data-tipo-consulta="<%= appointment.tipoConsulta || 'N/A' %>"
-                   data-doutor="<%= appointment.doutor || 'N/A' %>"
-                   data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>"
-                   data-data-consulta-iso="<%= dataConsultaISO %>" data-horario="<%= appointment.horario || 'N/A' %>"
-                   data-appointment-id="<%= appointment._id %>"
-                   data-pet-id="<%= petIdForDataAttribute %>" >
-            
-              <div class="pet-info">
-                <img
-                  src="/assets/images/<%= petImageSrc %>"
-                  alt="<%= appointment.pet && appointment.pet.especie ? appointment.pet.especie : 'Pet' %>"
-                />
-                <h2>
-                  <%= appointment.pet && appointment.pet.nome ?
-                  appointment.pet.nome : 'Nome Indisponível' %> (<%=
-                  appointment.pet && appointment.pet.raca ? appointment.pet.raca
-                  : 'Raça Indisponível' %>)
-                </h2>
-                <p>
-                  Tutor: <%= appointment.pet && appointment.pet.tutorNome ?
-                  appointment.pet.tutorNome : 'Tutor Indisponível' %>
-                </p>
-              </div>
-              <div class="buttons">
-                <button class="status-button"><%= appointment.status %></button>
-                <button class="consulta-type-button">
-                  <%= appointment.tipoConsulta %>
-                </button>
-              </div>
-              <div class="date-info">
-                <div>
-                  <span>Data:</span>
-                  <span
-                    ><%= new
-                    Date(appointment.dataConsulta).toLocaleDateString('pt-BR', {
-                    day: '2-digit', month: '2-digit', year: 'numeric' })
-                    %></span
-                  >
+        <div class="kanban-board">
+    
+            <!-- ======================= COLUNA AGUARDANDO ======================= -->
+            <div class="kanban-column">
+                <h3 class="column-title">Aguardando</h3>
+                <div class="column-cards">
+                    <% agendamentos.forEach(appointment => { %>
+                        <% if (appointment.status === 'Aguardando' || appointment.status === 'Confirmado') { %>
+    
+                            <%# Bloco de preparação das variáveis AQUI DENTRO %>
+                            <%
+                              let petImageSrc = 'default-pet.png';
+                              if (appointment.pet && appointment.pet.especie) {
+                                if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
+                                else if (appointment.pet.especie === 'Gato') petImageSrc = 'cat.png';
+                                else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
+                                else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
+                              }
+                              
+                              let petIdadeDisplay = 'N/A';
+                              if (appointment.pet && appointment.pet.anoNascimento) {
+                                const anoNasc = parseInt(appointment.pet.anoNascimento);
+                                if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
+                                    const idade = new Date().getFullYear() - anoNasc;
+                                    petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
+                                } else if (!isNaN(anoNasc) && anoNasc >= 0) {
+                                    petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
+                                }
+                              }
+    
+                              let dataConsultaISO = '';
+                              if (appointment.dataConsulta) {
+                                  const dateObj = new Date(appointment.dataConsulta);
+                                  const year = dateObj.getUTCFullYear(); // Usar UTC para consistência
+                                  const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
+                                  const day = dateObj.getUTCDate().toString().padStart(2, '0');
+                                  dataConsultaISO = `${year}-${month}-${day}`;
+                              }
+                            %>
+    
+                            <div class="appointment-card appointment-card-clickable"
+                                 data-appointment-id="<%= appointment._id %>"
+                                 data-pet-id="<%= appointment.pet ? appointment.pet._id : '' %>"
+                                 data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'Pet não encontrado' %>"
+                                 data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
+                                 data-pet-tutor-cpf="<%= appointment.pet ? appointment.pet.tutorCpf : 'N/A' %>"
+                                 data-pet-idade="<%= petIdadeDisplay %>"
+                                 data-pet-sexo="<%= appointment.pet ? appointment.pet.sexo : 'N/A' %>"
+                                 data-pet-peso="<%= appointment.pet ? appointment.pet.peso : 'N/A' %>"
+                                 data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
+                                 data-pet-especie-img="<%= petImageSrc %>"
+                                 data-tipo-consulta="<%= appointment.tipoConsulta %>"
+                                 data-doutor="<%= appointment.doutor %>"
+                                 data-data-consulta-iso="<%= dataConsultaISO %>"
+                                 data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>"
+                                 data-horario="<%= appointment.horario %>">
+                                
+                                <div class="pet-info">
+                                    <% if (appointment.pet) { %>
+                                        <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= appointment.pet.especie %>">
+                                        <h2><%= appointment.pet.nome %></h2>
+                                        <p>Tutor: <%= appointment.pet.tutorNome %></p>
+                                    <% } else { %>
+                                        <img src="/assets/images/default-pet.png" alt="Ícone pet padrão">
+                                        <h2>Agendamento Inválido</h2>
+                                        <p>Pet não associado.</p>
+                                    <% } %>
+                                </div>
+                                <div class="date-info">
+                                    <div><span>Data:</span> <span><%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></span></div>
+                                    <div><span>Horário:</span> <span><%= appointment.horario %></span></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
                 </div>
-                <div>
-                  <span>Horário:</span>
-                  <span><%= appointment.horario %></span>
-                </div>
-                <div>
-                  <span>Sala:</span>
-                  <span><%= appointment.sala %></span>
-                </div>
-              </div>
-              
             </div>
-            <% }) %> <% } else { %>
-            <p class="appointment-charizard">Nenhum agendamento encontrado...</p>
-            <% } %>
-          </section>
-        </main>
-      </div>
+    
+            <!-- ======================= COLUNA EM ATENDIMENTO ======================= -->
+            <div class="kanban-column">
+                <h3 class="column-title">Em Atendimento</h3>
+                <div class="column-cards">
+                    <% agendamentos.forEach(appointment => { %>
+                        <% if (appointment.status === 'Em Atendimento') { %>
+                            <%# Bloco de preparação das variáveis AQUI DENTRO %>
+                            <%
+                              let petImageSrc = 'default-pet.png';
+                              if (appointment.pet && appointment.pet.especie) {
+                                if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
+                                else if (appointment.pet.especie === 'Gato') petImageSrc = 'cat.png';
+                                else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
+                                else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
+                              }
+                              
+                              let petIdadeDisplay = 'N/A';
+                              if (appointment.pet && appointment.pet.anoNascimento) {
+                                const anoNasc = parseInt(appointment.pet.anoNascimento);
+                                if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
+                                    const idade = new Date().getFullYear() - anoNasc;
+                                    petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
+                                } else if (!isNaN(anoNasc) && anoNasc >= 0) {
+                                    petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
+                                }
+                              }
+    
+                              let dataConsultaISO = '';
+                              if (appointment.dataConsulta) {
+                                  const dateObj = new Date(appointment.dataConsulta);
+                                  const year = dateObj.getUTCFullYear();
+                                  const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
+                                  const day = dateObj.getUTCDate().toString().padStart(2, '0');
+                                  dataConsultaISO = `${year}-${month}-${day}`;
+                              }
+                            %>
+    
+                            <div class="appointment-card appointment-card-clickable"
+                                 data-appointment-id="<%= appointment._id %>"
+                                 data-pet-id="<%= appointment.pet ? appointment.pet._id : '' %>"
+                                 data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'Pet não encontrado' %>"
+                                 data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
+                                 data-pet-tutor-cpf="<%= appointment.pet ? appointment.pet.tutorCpf : 'N/A' %>"
+                                 data-pet-idade="<%= petIdadeDisplay %>"
+                                 data-pet-sexo="<%= appointment.pet ? appointment.pet.sexo : 'N/A' %>"
+                                 data-pet-peso="<%= appointment.pet ? appointment.pet.peso : 'N/A' %>"
+                                 data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
+                                 data-pet-especie-img="<%= petImageSrc %>"
+                                 data-tipo-consulta="<%= appointment.tipoConsulta %>"
+                                 data-doutor="<%= appointment.doutor %>"
+                                 data-data-consulta-iso="<%= dataConsultaISO %>"
+                                 data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>"
+                                 data-horario="<%= appointment.horario %>">
+                                
+                                <div class="pet-info">
+                                    <% if (appointment.pet) { %>
+                                        <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= appointment.pet.especie %>">
+                                        <h2><%= appointment.pet.nome %></h2>
+                                        <p>Tutor: <%= appointment.pet.tutorNome %></p>
+                                    <% } else { %>
+                                        <img src="/assets/images/default-pet.png" alt="Ícone pet padrão">
+                                        <h2>Agendamento Inválido</h2>
+                                        <p>Pet não associado.</p>
+                                    <% } %>
+                                </div>
+                                <div class="date-info">
+                                    <div><span>Data:</span> <span><%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></span></div>
+                                    <div><span>Horário:</span> <span><%= appointment.horario %></span></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+            </div>
+    
+            <!-- ======================= COLUNA FINALIZADO ======================= -->
+            <div class="kanban-column">
+                <h3 class="column-title">Finalizado</h3>
+                <div class="column-cards">
+                    <% agendamentos.forEach(appointment => { %>
+                        <% if (appointment.status === 'Finalizado') { %>
+                            <%# Bloco de preparação das variáveis AQUI DENTRO %>
+                            <%
+                              let petImageSrc = 'default-pet.png';
+                              if (appointment.pet && appointment.pet.especie) {
+                                if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
+                                else if (appointment.pet.especie === 'Gato') petImageSrc = 'cat.png';
+                                else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
+                                else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
+                              }
+                              
+                              let petIdadeDisplay = 'N/A';
+                              if (appointment.pet && appointment.pet.anoNascimento) {
+                                const anoNasc = parseInt(appointment.pet.anoNascimento);
+                                if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
+                                    const idade = new Date().getFullYear() - anoNasc;
+                                    petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
+                                } else if (!isNaN(anoNasc) && anoNasc >= 0) {
+                                    petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
+                                }
+                              }
+    
+                              let dataConsultaISO = '';
+                              if (appointment.dataConsulta) {
+                                  const dateObj = new Date(appointment.dataConsulta);
+                                  const year = dateObj.getUTCFullYear();
+                                  const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
+                                  const day = dateObj.getUTCDate().toString().padStart(2, '0');
+                                  dataConsultaISO = `${year}-${month}-${day}`;
+                              }
+                            %>
+    
+                            <div class="appointment-card appointment-card-clickable"
+                                 data-appointment-id="<%= appointment._id %>"
+                                 data-pet-id="<%= appointment.pet ? appointment.pet._id : '' %>"
+                                 data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'Pet não encontrado' %>"
+                                 data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
+                                 data-pet-tutor-cpf="<%= appointment.pet ? appointment.pet.tutorCpf : 'N/A' %>"
+                                 data-pet-idade="<%= petIdadeDisplay %>"
+                                 data-pet-sexo="<%= appointment.pet ? appointment.pet.sexo : 'N/A' %>"
+                                 data-pet-peso="<%= appointment.pet ? appointment.pet.peso : 'N/A' %>"
+                                 data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
+                                 data-pet-especie-img="<%= petImageSrc %>"
+                                 data-tipo-consulta="<%= appointment.tipoConsulta %>"
+                                 data-doutor="<%= appointment.doutor %>"
+                                 data-data-consulta-iso="<%= dataConsultaISO %>"
+                                 data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>"
+                                 data-horario="<%= appointment.horario %>">
+                                
+                                <div class="pet-info">
+                                    <% if (appointment.pet) { %>
+                                        <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= appointment.pet.especie %>">
+                                        <h2><%= appointment.pet.nome %></h2>
+                                        <p>Tutor: <%= appointment.pet.tutorNome %></p>
+                                    <% } else { %>
+                                        <img src="/assets/images/default-pet.png" alt="Ícone pet padrão">
+                                        <h2>Agendamento Inválido</h2>
+                                        <p>Pet não associado.</p>
+                                    <% } %>
+                                </div>
+                                <div class="date-info">
+                                    <div><span>Data:</span> <span><%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></span></div>
+                                    <div><span>Horário:</span> <span><%= appointment.horario %></span></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+            </div>
+    
+        </div> <!-- FIM do .kanban-board -->
+    
+    <% } else { %>
+        <p class="appointment-charizard">Nenhum agendamento encontrado...</p>
+    <% } %>
+
 
       <div class="add-pet"><span>+</span></div>
     </main>
