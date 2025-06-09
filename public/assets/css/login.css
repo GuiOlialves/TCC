@@ -1,63 +1,161 @@
-main{
+/* Remove margens e usa a cor de fundo do seu tema */
+body {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    background-color: var(--blue-900);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container principal que divide a tela em duas */
+.login-container {
     width: 100%;
-    height: 100vh;
-}
-
-main .section-logo{
+    max-width: 1000px;
+    height: 600px;
     display: flex;
-    flex-direction: column;
-    color: var(--white);
-    align-items: center;
-}
-
-main .section-logo img{
-    width: 300px;
-    margin-bottom: 10px;
-}
-
-main .line{
-    width: 1px;
-    height: 350px;
-    background-color: var(--gray-500);
-}
-
-main form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: var(--blue-800);
-    padding: 30px;
-    border-radius: 8px;
-    min-height: 300px;
-    border: 1px solid var(--gray-500);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-main form input{
-    width: 350px;
-    padding: 8px;
-    border: none;
-    border-radius: 8px;
+/* Lado esquerdo (Branding) */
+.login-branding {
+    width: 50%;
+    background: linear-gradient(to bottom right, var(--button), #296a9a);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-branding .logo-img {
+    width: 150px;
     margin-bottom: 20px;
 }
 
-main form h1{
-    margin-bottom: 20PX;
-    color: var(--white);
+.login-branding h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
 }
 
-main form button{
-    background-color: var(--button);
-    border: 1px solid var(--button);
+.login-branding p {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Lado direito (Formulário) */
+.login-form-wrapper {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2 {
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: var(--gray-400);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    background-color: var(--blue-900);
+    border: 1px solid #3c4a60;
     border-radius: 8px;
-    width: 200px;
-    padding: 8px;
+    padding: 12px 15px;
     color: var(--white);
-    transition: 0.2s;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-main form button:hover{
-    background-color: transparent;
+.input-group input::placeholder {
+    color: var(--gray-500);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--button);
+}
+
+/* Botão de Login */
+.login-button {
+    background-color: var(--button);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #357ab8;
+    transform: translateY(-2px);
+}
+
+/* Rodapé do formulário */
+.login-footer {
+    color: var(--gray-500);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Design Responsivo para telas menores */
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .login-branding,
+    .login-form-wrapper {
+        width: 100%;
+    }
+
+    .login-branding {
+        padding: 50px 20px;
+        height: 300px;
+    }
+}
+/* Adicione no final do arquivo login.css */
+.error-message-login {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <title>VetControl - Cadastro</title>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Lado Esquerdo: Branding e Imagem -->
+        <div class="login-branding">
+            <img src="/assets/images/logo.png" alt="Logo VetControl" class="logo-img">
+            <h1>VetControl</h1>
+            <p>Gerenciamento completo para sua clínica veterinária.</p>
+        </div>
+
+        <!-- Lado Direito: Formulário de Cadastro -->
+        <div class="login-form-wrapper">
+            <form id="form-cadastro" class="login-form" action="/cadastro" method="POST">
+                <h2>Crie sua Conta</h2>
+
+                <% if (error) { %>
+                    <p class="error-message-login"><%= error %></p>
+                <% } %>
+                
+                <div class="input-group">
+                    <label for="userInput">Usuário</label>
+                    <input type="text" id="userInput" name="user" placeholder="Escolha um nome de usuário" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="passwordInput">Senha</label>
+                    <input type="password" id="passwordInput" name="password" placeholder="Crie uma senha" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="passwordConfirmInput">Confirme a Senha</label>
+                    <input type="password" id="passwordConfirmInput" name="passwordConfirm" placeholder="Digite a senha novamente" required>
+                </div>
+                
+                <button type="submit" class="login-button">Cadastrar</button>
+                
+                <p class="login-footer">Já tem uma conta? <a href="/">Faça o login</a>.</p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -17,62 +17,58 @@
     <title>VetControl - Agenda</title>
   </head>
   <body>
-    <main>
-      <section class="side-bar">
-        <div class="logo">
-          <img
-            src="/assets/images/logo.png"
-            class="imagem"
-            alt="Logo VetControl"
-          />
-        </div>
-        <nav>
-          <a href="lista-pets"
-            ><img src="../../assets/images/home.png" alt="" /><p>Lista de Pets</p></a
-          >
-          <a href="agenda"
-            ><img src="../../assets/images/calendar.png" alt="" /><p>Agenda</p></a
-          >
-          <a href="estoque"
-            ><img src="../../assets/images/stock.png" alt="" /><p>Estoque</p></a
-          >
-          <a href="financeiro"
-            ><img src="../../assets/images/finance.png" alt="" /><p>Painel
-              Financeiro</p></a
-          >
-          <a href="relatorios"
-            ><img
-              src="../../assets/images/relatorios.png"
-              alt=""
-            /><p>Relátorios</p></a
-          >
-        </nav>
-      </section>
+    <main class="container-principal">
+        <!-- NOVA BARRA LATERAL -->
+        <section class="side-bar">
+            <a href="/agenda" class="sidebar-logo">
+                <img src="/assets/images/logo-title.png" alt="Logo VetControl" class="logo-img">
+                <h1 class="logo-text">VetControl</h1>
+            </a>
+            
+            <nav class="sidebar-nav">
+                <a href="/lista-pets" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                    <p class="nav-text">Lista de Pets</p>
+                </a>
+                <!-- Adicionando a classe 'active' para a página de agenda -->
+                <a href="/agenda" class="nav-item active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <p class="nav-text">Agenda</p>
+                </a>
+                <a href="/estoque" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    <p class="nav-text">Estoque</p>
+                </a>
+                <a href="/financeiro" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <p class="nav-text">Financeiro</p>
+                </a>
+                <a href="/relatorios" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    <p class="nav-text">Relatórios</p>
+                </a>
+            </nav>
+        </section>
 
-      <div class="main2">
-        <header class="top-bar">
-          <div class="left-side">
-            <div class="logo">
-              <h1>VetControl</h1>
-            </div>
-          </div>
-          <div class="right-side">
-            <img
-              class="userImage"
-              src="/assets/images/User.png"
-              alt="Usuário"
-            />
-            <span class="userName">Dr. Ernandes</span>
-          </div>
-          <div class="mobile-modal-button">
-            <img src="/assets/images/burguer-icon-mobile.png" alt="Menu" />
-          </div>
-        </header>
-
+        <div class="conteudo-principal">
+            <!-- NOVA BARRA SUPERIOR -->
+            <header class="top-bar">
+                <div class="top-bar-content">
+                    <div class="search-placeholder"></div>
+                    <div class="user-area">
+                        <div class="user-info">
+                            <span class="user-name">Dr.Ernandes</span>
+                            <span class="user-role">Veterinário</span>
+                        </div>
+                        <img class="user-avatar" src="/assets/images/User.png" alt="Avatar do Usuário">
+                    </div>
+                </div>
+            </header>
         
           <main> <!-- Ou a tag que você usa para o conteúdo principal -->
     <% if (typeof agendamentos !== 'undefined' && agendamentos.length > 0) { %>
-
+<% const confirmados = agendamentos.filter(a => a.status === 'Confirmado'); %>
+<% const finalizados = agendamentos.filter(a => a.status === 'Finalizado'); %>
         <div class="kanban-board">
     
             <!-- ======================= COLUNA AGUARDANDO ======================= -->
@@ -228,12 +224,11 @@
     
             <!-- ======================= COLUNA FINALIZADO ======================= -->
             <div class="kanban-column">
-                <h3 class="column-title">Finalizado</h3>
-                <div class="column-cards">
-                    <% agendamentos.forEach(appointment => { %>
-                        <% if (appointment.status === 'Finalizado') { %>
-                            <%# Bloco de preparação das variáveis AQUI DENTRO %>
-                            <%
+        <h2 class="column-title">Finalizados (<%= finalizados.length %>)</h2>
+        <div class="column-cards">
+            <% if(finalizados.length > 0) { %>
+                <% finalizados.forEach(appointment => { %>
+                  <%
                               let petImageSrc = 'default-pet.png';
                               if (appointment.pet && appointment.pet.especie) {
                                 if (appointment.pet.especie === 'Cachorro') petImageSrc = 'dog.png';
@@ -241,65 +236,28 @@
                                 else if (appointment.pet.especie === 'Pássaro') petImageSrc = 'bird.png';
                                 else if (appointment.pet.especie === 'Hamster') petImageSrc = 'hamster.png';
                               }
-                              
-                              let petIdadeDisplay = 'N/A';
-                              if (appointment.pet && appointment.pet.anoNascimento) {
-                                const anoNasc = parseInt(appointment.pet.anoNascimento);
-                                if (!isNaN(anoNasc) && anoNasc > 0 && anoNasc.toString().length === 4) {
-                                    const idade = new Date().getFullYear() - anoNasc;
-                                    petIdadeDisplay = idade === 0 ? 'Menos de 1 ano' : idade + (idade === 1 ? ' ano' : ' anos');
-                                } else if (!isNaN(anoNasc) && anoNasc >= 0) {
-                                    petIdadeDisplay = anoNasc + (anoNasc === 1 ? ' ano' : ' anos');
-                                }
-                              }
-    
-                              let dataConsultaISO = '';
-                              if (appointment.dataConsulta) {
-                                  const dateObj = new Date(appointment.dataConsulta);
-                                  const year = dateObj.getUTCFullYear();
-                                  const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
-                                  const day = dateObj.getUTCDate().toString().padStart(2, '0');
-                                  dataConsultaISO = `${year}-${month}-${day}`;
-                              }
-                            %>
-    
-                            <div class="appointment-card appointment-card-clickable"
-                                 data-appointment-id="<%= appointment._id %>"
-                                 data-pet-id="<%= appointment.pet ? appointment.pet._id : '' %>"
-                                 data-pet-nome="<%= appointment.pet ? appointment.pet.nome : 'Pet não encontrado' %>"
-                                 data-pet-tutor-nome="<%= appointment.pet ? appointment.pet.tutorNome : 'N/A' %>"
-                                 data-pet-tutor-cpf="<%= appointment.pet ? appointment.pet.tutorCpf : 'N/A' %>"
-                                 data-pet-idade="<%= petIdadeDisplay %>"
-                                 data-pet-sexo="<%= appointment.pet ? appointment.pet.sexo : 'N/A' %>"
-                                 data-pet-peso="<%= appointment.pet ? appointment.pet.peso : 'N/A' %>"
-                                 data-pet-raca="<%= appointment.pet ? appointment.pet.raca : 'N/A' %>"
-                                 data-pet-especie-img="<%= petImageSrc %>"
-                                 data-tipo-consulta="<%= appointment.tipoConsulta %>"
-                                 data-doutor="<%= appointment.doutor %>"
-                                 data-data-consulta-iso="<%= dataConsultaISO %>"
-                                 data-data-consulta-display="<%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>"
-                                 data-horario="<%= appointment.horario %>">
-                                
-                                <div class="pet-info">
-                                    <% if (appointment.pet) { %>
-                                        <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= appointment.pet.especie %>">
-                                        <h2><%= appointment.pet.nome %></h2>
-                                        <p>Tutor: <%= appointment.pet.tutorNome %></p>
-                                    <% } else { %>
-                                        <img src="/assets/images/default-pet.png" alt="Ícone pet padrão">
-                                        <h2>Agendamento Inválido</h2>
-                                        <p>Pet não associado.</p>
-                                    <% } %>
-                                </div>
-                                <div class="date-info">
-                                    <div><span>Data:</span> <span><%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></span></div>
-                                    <div><span>Horário:</span> <span><%= appointment.horario %></span></div>
-                                </div>
+                              %>
+                    <div class="appointment-card" style="border-left-color: #3B9943; cursor: default;">
+                        <div class="pet-info">
+                           <img src="/assets/images/<%= petImageSrc %>" alt="Ícone <%= appointment.pet.especie %>">
+                            <div class="text-details">
+                                <h2><%= appointment.pet ? appointment.pet.nome : 'Pet não encontrado' %></h2>
+                                <p>Preço: R$ <%= appointment.preco.toFixed(2) %></p>
                             </div>
-                        <% } %>
-                    <% }); %>
-                </div>
-            </div>
+                        </div>
+                        <div class="date-info">
+                            <div>
+                                <span>Finalizado em:</span>
+                                <span><%= new Date(appointment.dataConsulta).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="empty-state">Nenhuma consulta finalizada.</p>
+            <% } %>
+        </div>
+    </div>
     
         </div> <!-- FIM do .kanban-board -->
     
@@ -546,7 +504,7 @@
     <div class="buttons">
       <button id="modalPetPerfilBtn">Perfil do Pet</button>
       <button id="closeAppointmentDetailsModal" class="close modalCancelAppointmentBtn">Confirmar</button>
-      <!-- <button id="modalConfirmAppointmentBtn" >Confirmar</button> -->
+        <button id="modalFinalizarConsultaBtn" class="confirm-button">Finalizar Consulta</button>
       <button id="modalCancelAppointmentBtn">Cancelar Consulta</button> 
     </div>
   </div>

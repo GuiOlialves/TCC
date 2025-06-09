@@ -45,17 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const editAppointmentDoutorInput = document.getElementById("editAppointmentDoutor");
 
   // --- LOGS INICIAIS PARA VERIFICAR SELETORES ---
-  console.log("--- Verificação de Seletores Iniciais ---");
-  console.log("Modal Adicionar (modalAddProfilePet):", !!modalAddProfilePet);
-  console.log("Modal Detalhes (appointmentDetailsModal):", !!appointmentDetailsModal);
-  console.log("Botão Fechar Modal Detalhes:", !!closeAppointmentDetailsModalButton);
-  console.log("Cards de Agendamento Encontrados (appointmentCards):", appointmentCards.length);
-  console.log("Botão Editar no Modal de Detalhes (editAppointmentBtnInDetailsModal):", !!editAppointmentBtnInDetailsModal);
-  console.log("Botão Cancelar/Excluir no Modal de Detalhes (modalCancelAppointmentBtn):", !!modalCancelAppointmentBtn);
-  console.log("Modal de Edição (editAppointmentModal):", !!editAppointmentModal);
-  console.log("Botão Fechar Modal Edição:", !!closeEditAppointmentModalButton);
-  console.log("Formulário de Edição (formEditAppointment):", !!formEditAppointment);
-  console.log("--------------------------------------");
+  // console.log("--- Verificação de Seletores Iniciais ---");
+  // console.log("Modal Adicionar (modalAddProfilePet):", !!modalAddProfilePet);
+  // console.log("Modal Detalhes (appointmentDetailsModal):", !!appointmentDetailsModal);
+  // console.log("Botão Fechar Modal Detalhes:", !!closeAppointmentDetailsModalButton);
+  // console.log("Cards de Agendamento Encontrados (appointmentCards):", appointmentCards.length);
+  // console.log("Botão Editar no Modal de Detalhes (editAppointmentBtnInDetailsModal):", !!editAppointmentBtnInDetailsModal);
+  // console.log("Botão Cancelar/Excluir no Modal de Detalhes (modalCancelAppointmentBtn):", !!modalCancelAppointmentBtn);
+  // console.log("Modal de Edição (editAppointmentModal):", !!editAppointmentModal);
+  // console.log("Botão Fechar Modal Edição:", !!closeEditAppointmentModalButton);
+  // console.log("Formulário de Edição (formEditAppointment):", !!formEditAppointment);
+  // console.log("--------------------------------------");
+ const modalFinalizarConsultaBtn = document.getElementById("modalFinalizarConsultaBtn");
 
   // --- LÓGICA PARA ABRIR MODAL DE DETALHES AO CLICAR NO CARD ---
   if (appointmentCards && appointmentCards.length > 0 && appointmentDetailsModal) {
@@ -97,6 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           console.warn("Botão Editar (#editAppointmentBtnInDetailsModal) não encontrado para definir atributos data-*.");
         }
+        
+            
+            // --- ATRIBUIR O ID AO NOVO BOTÃO ---
+            if (modalFinalizarConsultaBtn) {
+                modalFinalizarConsultaBtn.setAttribute('data-appointment-id', cardAppointmentId);
+            }
        
         if (modalCancelAppointmentBtn) {
           if (cardAppointmentId) {
@@ -119,7 +126,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!appointmentCards || appointmentCards.length === 0) console.warn("AVISO: Nenhum card de agendamento clicável (.appointment-card-clickable) foi encontrado.");
     if (!appointmentDetailsModal) console.warn("AVISO: O modal de detalhes (#appointmentDetailsModal) não foi encontrado.");
   }
+if (modalFinalizarConsultaBtn) {
+        modalFinalizarConsultaBtn.addEventListener("click", async function() {
+            const appointmentId = this.dataset.appointmentId;
+            if (!appointmentId) return alert("Erro: ID do agendamento não encontrado.");
 
+            try {
+                const response = await fetch(`/agendamentos/finalizar/${appointmentId}`, { method: 'POST' });
+                if (response.ok) {
+                    alert('Consulta finalizada com sucesso!');
+                    location.reload();
+                } else {
+                    const error = await response.text();
+                    alert(`Erro ao finalizar a consulta: ${error}`);
+                }
+            } catch (error) {
+                console.error("Erro de rede:", error);
+                alert("Erro de rede ao tentar finalizar a consulta.");
+            }
+        });
+    }
   // --- LÓGICA PARA FECHAR MODAL DE DETALHES ---
   if (closeAppointmentDetailsModalButton && appointmentDetailsModal) {
     closeAppointmentDetailsModalButton.addEventListener("click", () => {
@@ -361,63 +387,10 @@ if (appointmentCards && appointmentCards.length > 0 && appointmentDetailsModal) 
   }
 
   // --- LÓGICA PARA MODAL DE ADICIONAR PET/AGENDAMENTO (Mantida) ---
-  const especiesGato = {
-    0: "Selecione a Raça",
-    1: "Persa",
-    2: "Maine Coon",
-    3: "Siamês",
-    4: "Bengal",
-    5: "Sphynx",
-    6: "Ragdoll",
-    7: "Birman",
-    8: "Scottish Fold",
-    9: "Britânico de Pelo Curto",
-    10: "Sem raça definida",
-  };
-  const especiesCachorro = {
-    0: "Selecione a Raça",
-    1: "Labrador",
-    2: "Poodle",
-    3: "Bulldog",
-    4: "Beagle",
-    5: "Golden Retriever",
-    6: "Chihuahua",
-    7: "Shih Tzu",
-    8: "Pastor Alemão",
-    9: "Boxer",
-    10: "Dachshund",
-    11: "Yorkshire Terrier",
-    12: "Cocker Spaniel",
-    13: "Maltês",
-    14: "Rottweiler",
-    15: "Doberman",
-    16: "Pinscher",
-    17: "Husky Siberiano",
-    18: "Sem raça definida",
-  };
-  const especiesPassaro = {
-    0: "Selecione a Raça",
-    1: "Papagaio",
-    2: "Periquito",
-    3: "Calopsita",
-    4: "Ninfa",
-    5: "Agapornis",
-    6: "Canário",
-    7: "Cacatua",
-    8: "Curió",
-    9: "Tico-tico",
-    10: "Arara",
-  };
-  const especiesHamster = {
-    0: "Selecione a Raça",
-    1: "Porquinho-da-índia",
-    2: "Hamster",
-    3: "Coelho",
-    4: "Gerbil",
-    5: "Chinchila",
-    6: "Degus",
-    7: "Camundongo",
-  };
+ const especiesGato = {0:"Selecione a Raça", 1:"Siamês", 2:"Persa", 3:"Maine Coon", 4:"Bengal", 5:"Sphynx", 6:"Angorá", 7:"Ragdoll", 8:"SRD (Sem Raça Definida)"};
+  const especiesCachorro = {0:"Selecione a Raça", 1:"Labrador Retriever", 2:"Buldogue Francês", 3:"Golden Retriever", 4:"Pastor Alemão", 5:"Poodle", 6:"Shih Tzu", 7:"Pug", 8:"SRD (Vira-lata)"};
+  const especiesPassaro = {0:"Selecione a Raça", 1:"Canário", 2:"Periquito", 3:"Calopsita", 4:"Papagaio", 5:"Agapornis", 6:"Manon", 7:"Caturrita", 8:"Arara"};
+  const especiesHamster = {0:"Selecione a Raça", 1:"Sírio", 2:"Anão Russo", 3:"Siberiano", 4:"Roborovski", 5:"Chinês", 6:"Porquinho-da-índia", 7:"Camundongo"};
 
   const dataAtual = new Date();
   let diaAtual = dataAtual.getDate();
@@ -449,7 +422,6 @@ if (appointmentCards && appointmentCards.length > 0 && appointmentDetailsModal) 
       }
       especieSelectedId = "";
       mainContent.classList.add("invisible");
-      
     });
   }
 

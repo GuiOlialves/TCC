@@ -1,49 +1,52 @@
-.reports{
+/* Estilo geral da página de relatórios */
+.reports-page {
+    padding: 25px;
+    width: 100%;
     color: var(--white);
-    display: flex;
-    justify-content: space-around;
-    font-size: 10px;
 }
 
-.reports .report{
-    width: 300px;
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: var(--gray-200);
+}
+
+/* Grade para organizar os cards de relatório */
+.reports-grid {
+    display: grid;
+    /* Cria 2 colunas em telas grandes, e 1 em telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+/* Estilo de cada card de relatório */
+.report-card {
     background-color: var(--blue-800);
-    margin: 25px;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.reports .report img{
-    margin: 20px 0;
-    width: 200px;
-}
-
-.reports .report .report-data{
+    border-radius: 12px;
+    overflow: hidden; /* Garante que os cantos arredondados sejam aplicados */
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.reports .report .report-revenue{
-    width: 100%;
+/* Cabeçalho do card */
+.report-card-header {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Um fundo sutilmente mais escuro */
+    border-bottom: 1px solid var(--blue-900);
 }
 
-.reports .report .report-revenue header{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.report-card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-.reports .report .report-revenue .item{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.reports .report .report-revenue .item p{
-    margin: 15px 0;
+/* Corpo do card, onde o gráfico fica */
+.report-card-body {
+    padding: 25px;
+    flex-grow: 1;
+    position: relative; /* Essencial para o Chart.js */
+    height: 400px; /* Altura fixa para o container do gráfico */
 }

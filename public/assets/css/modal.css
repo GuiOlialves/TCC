@@ -337,7 +337,6 @@
     background-color: var(--blue-800);
     color: var(--white);
     padding: 30px;
-    
 }
 
 .modal-add-pet-profile .profile-pet-modal .especies{
@@ -494,4 +493,15 @@
 
 .stock button:hover{
     background-color: var(--button);
+}
+/* Adicione no final do seu modal.css */
+.modal-agenda .buttons button.confirm-button {
+    color: #3B9943;
+    background-color: rgba(59, 153, 67, 0.2); /* Fundo verde transparente */
+    border: 1px solid #3B9943;
+}
+
+.modal-agenda .buttons button.confirm-button:hover {
+    background-color: #3B9943;
+    color: white;
 }

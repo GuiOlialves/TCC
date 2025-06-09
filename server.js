@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 const path = require("path");
 const routes = require("./routes");
 const app = express();
+const connectionString = "mongodb+srv://guiolialves2:183928@tcc.2yzzdam.mongodb.net/?retryWrites=true&w=majority&appName=tcc"
 
 //banquinho de dados
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Vet2", {})
-  .then(() => console.log("MongoDB conectado!"))
-  .catch((err) => console.error("Erro ao conectar no MongoDB:", err));
+  .connect(connectionString, {})
+  .then(() => console.log("MongoDB Atlas conectado!")) // Mensagem atualizada
+  .catch((err) => console.error("Erro ao conectar no MongoDB Atlas:", err));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); //arquivos json

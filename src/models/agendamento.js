@@ -9,6 +9,7 @@ const AgendamentoSchema = new mongoose.Schema({
   doutor: String, // Nome do doutor ou referência a um schema de Doutor
   status: { type: String, default: "Confirmado" }, // Confirmado, Cancelado, Realizado
   sala: { type: String, default: "Consultório 2" }, // Ou qualquer outra lógica de sala
+  preco: { type: Number, default: 0 },
   observacoes: String, // Campo opcional para anotações do agendamento
   // createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now },

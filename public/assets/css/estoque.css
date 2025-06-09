@@ -1,114 +1,135 @@
-.add-item{
-    width: 190px;
-    position: relative;
-    left: 75%;
-    border-radius: 8px;
-    padding: 8px;
-    margin-top: 25px;
-    border: none;
-    background-color: var(--button);
-    color: white;
-    border: 1px solid var(--button);
-    transition: 0.2s;
+/* Estilo geral da página de estoque */
+.stock-page {
+    padding: 25px;
+    width: 100%;
 }
 
-.add-item:hover{
-    background-color: transparent;
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--gray-200);
 }
 
-.table-stock{
+.stock-header {
     display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 25px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Botão de Adicionar Item */
+.add-item-btn {
+    background-color: var(--button);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-item-btn:hover {
+    background-color: #357ab8; /* Tom mais escuro do azul */
+    transform: translateY(-2px);
+}
+
+.add-item-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Container da Tabela */
+.table-container {
+    background-color: var(--blue-800);
+    border-radius: 12px;
+    overflow-x: auto; /* Garante scroll horizontal em telas pequenas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tabela de Estoque */
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
     color: var(--white);
 }
 
-.lines{
-    overflow-y: auto;
-    max-height: 400px;
-    padding-right: 30px;
+.stock-table th, .stock-table td {
+    padding: 16px 20px;
+    text-align: left;
+    white-space: nowrap; /* Impede que o texto quebre linha */
 }
 
-.lines::-webkit-scrollbar {
-    width: 8px;
+/* Cabeçalho da Tabela */
+.stock-table thead {
+    background-color: var(--blue-900);
 }
 
-.lines::-webkit-scrollbar-thumb {
-    background: var(--gray-500);
-    border-radius: 4px;
+.stock-table th {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--gray-400);
 }
 
-.lines::-webkit-scrollbar-track {
-    background: transparent;
+/* Corpo da Tabela */
+.stock-table tbody tr {
+    border-bottom: 1px solid var(--blue-900);
+    transition: background-color 0.2s ease;
 }
 
-.table-stock .table-colunm{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.stock-table tbody tr:last-child {
+    border-bottom: none;
 }
 
-.table-stock header{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    background-color: var(--blue-800);
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.stock-table tbody tr:hover {
+    background-color: #2a3a55; /* Um tom um pouco mais claro de azul */
 }
 
-.table-stock header p{
-    flex: 1;
-    display: flex;
-    justify-content: center;
+/* Estilo para a tag de categoria */
+.category-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
-.table-stock .item{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    min-height: 56px;
-}
-
-.table-stock .item .quantidade{
-    display: flex;
-    justify-content: space-between;
-}
-
-.table-stock .item div{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.table-stock .item .nome img{
-    width: 40px;
-    height: 40px;
-}
-
-.table-stock .item .nome p{
-    margin-left: 10px;
-}
-
-.table-stock button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: transparent;
+/* Botão de Ação (Editar) */
+.action-btn {
+    background: none;
     border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
 }
 
-.table-stock button img{
-    width: 25px;
-    height: 25px;
+.action-btn svg {
+    stroke: var(--gray-400);
+    transition: stroke 0.2s ease;
 }
 
-.table-stock .item .quantidade p{
-    margin-left: 100px;
+.action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn:hover svg {
+    stroke: var(--white);
+}
+
+/* Mensagem de estado vazio */
+.empty-state {
+    text-align: center;
+    color: var(--gray-400);
+    font-style: italic;
+    padding: 40px;
 }

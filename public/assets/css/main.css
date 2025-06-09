@@ -1,195 +1,255 @@
-/* Em public/assets/css/main.css - SEU CÓDIGO ORIGINAL FORNECIDO */
-*{
+/* Em public/assets/css/main.css */
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif; 
+    font-family: "Roboto", sans-serif;
 }
 
 :root {
     /* Suas cores base */
-    --blue-900: #0F172A; 
-    --blue-800: #1E293B; 
-    --blue-400: #479bd8; 
-    
+    --blue-900: #0F172A;
+    --blue-800: #1E293B;
+    --blue-400: #479bd8;
+
     /* Suas cores neutras */
-    --gray-400: #94A3B8; 
-    --gray-200: #E2E8F0; 
-    --white: #F8FAFC;    
+    --gray-400: #94A3B8;
+    --gray-500: #6B7280; /* Cor para ícones inativos e texto secundário */
+    --gray-200: #E2E8F0;
+    --white: #F8FAFC;
 
     /* Suas cores de feedback */
-    --success: #10B981;  
-    --warning: #F59E0B;  
-    --danger: #EF4444;   
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
 
-    /* Adicionando a variável --gray-500 que estava no seu CSS original para a sidebar */
-    --gray-500: #94A3B8; /* Ou a cor específica que você usava, como #6B7280 */
-     /* Adicionando a variável --button que estava no seu CSS original */
+    /* Cor de destaque para botões e links */
     --button: #479bd8;
 }
 
-/* Seu ajuste no body original */
 body {
-    background-color: var(--blue-900); /* Cor do seu :root, antes era --blue-700 */
+    background-color: var(--blue-900);
     color: var(--white);
+    display: flex; /* Garante que o layout principal ocupe a tela toda */
 }
 
-input[type=number]::-webkit-inner-spin-button { 
-    -webkit-appearance: none;
-    
-}
-input[type=number] { 
-   -moz-appearance: textfield;
-   appearance: textfield;
-
-}
-
-button{
+button {
     cursor: pointer;
 }
 
-input{
+input {
     outline: none;
 }
 
-/* Seu .main2 original */
-.main2{
+/* ================================================= */
+/* === ESTRUTURA PRINCIPAL DO LAYOUT === */
+/* ================================================= */
+
+/* A tag <main> agora é nosso container principal */
+main.container-principal {
+    display: flex;
     width: 100%;
 }
 
-/* Seu .main2 main original */
-.main2 main{
+.conteudo-principal {
+    flex-grow: 1; /* Faz esta área ocupar todo o espaço restante */
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
-/* Seu header.top-bar original */
-header.top-bar{
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    background-color: var(--blue-800);
-    justify-content: space-between;
-    padding: 1.5rem;
-    color: white; /* Mantendo 'white' do seu original, em vez de var(--white) */
+/* Garante que o conteúdo das páginas (kanban, tabelas) não transborde */
+.kanban-board, .stock-page, .financial-dashboard, .reports-page {
+    flex-grow: 1;
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for maior que a tela */
+    padding: 25px;
 }
 
-header.top-bar .left-side{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 45%;
-}
 
-header.top-bar .left-side .logo{
-    display: none;
-}
+/* ================================================= */
+/* === NOVOS ESTILOS PARA SIDEBAR E TOP BAR === */
+/* ================================================= */
 
-header.top-bar .right-side{
-    display: flex;
-    align-items: center;
-    width: 55%;
-    justify-content: end;
-    margin-right: 20px;
-}
-
-/* Seu .logo original (da sidebar) */
-.logo{
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    color: white; /* Mantendo 'white' do seu original */
-}
-
-.imagem{ /* Imagem da logo na sidebar */
-    margin-right: 20px;
-}
-
-header.top-bar .userName{
-    font-size: 12px;
-}
-
-header.top-bar .userImage{
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-}
-
-header.top-bar input{
-    width: 17rem;
-    padding: 3px 10px;
-    height: 2rem;
-    border-radius: 8px;
-    border: none;
-}
-
-/* Seu <main> principal original */
-main{
-    display: flex;
-}
-
-.invisible{
-    /* opacity: 0.5; */
-}
-
-/* Sua .side-bar original */
-.side-bar{
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.side-bar {
     width: 90px;
     height: 100vh;
     background-color: var(--blue-800);
     position: sticky;
     top: 0;
-    transition: width 0.4s ease;
-    /* overflow: hidden; Comentado no seu original */
-}
-
-.side-bar nav{
-    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-left: 2rem;
-    padding-top: 4rem;
+    transition: width 0.3s ease-in-out;
+    border-right: 1px solid var(--blue-900);
+    padding: 15px 0;
+    flex-shrink: 0;
 }
 
-.side-bar nav a{
-    color: var(--gray-500); /* Usando --gray-500 como no seu original para links */
-    text-decoration: none;
-    font-size: 17px;
-    margin-bottom: 30px;
+/* Efeito de expansão ao passar o mouse */
+.side-bar:hover {
+    width: 260px;
+}
+
+/* Logo na Sidebar */
+.sidebar-logo {
     display: flex;
     align-items: center;
-}
-.side-bar nav a p{
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-.side-bar.expandida a p {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-}
-
-.side-bar nav a img{
-    margin-right: 15px;
-    width: 25px;
-    height: 25px;
-}
-
-.mobile-modal-button{
-    display: none;
-}
-
-.mobile-modal-button img{
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.appointment-charizard{
+    padding: 15px 25px;
+    gap: 15px;
+    text-decoration: none;
     color: var(--white);
-    margin: 20px 50px;
+    flex-shrink: 0;
+}
+
+.sidebar-logo .logo-img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+    object-fit: contain; /* <-- ADICIONE ESTA LINHA */
+}
+
+.sidebar-logo:hover .logo-img {
+    transform: rotate(15deg);
+}
+
+.sidebar-logo .logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s 0.1s ease-in-out; /* Adiciona um pequeno delay */
+}
+
+.side-bar:hover .logo-text {
+    opacity: 1;
+}
+
+/* Navegação da Sidebar */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 28px; /* Alinha o ícone com a logo */
+    text-decoration: none;
+    color: var(--gray-400);
+    position: relative;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(71, 155, 216, 0.1);
+    color: var(--white);
+}
+
+/* Indicador de item ativo (barra à esquerda) */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background-color: var(--button);
+    border-radius: 0 4px 4px 0;
+    transition: height 0.2s ease;
+}
+
+.nav-item:hover::before {
+    height: 70%;
+}
+
+.nav-item.active {
+    background-color: rgba(71, 155, 216, 0.1);
+    color: var(--white);
+}
+
+.nav-item.active::before {
+    height: 100%;
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.nav-item .nav-text {
+    opacity: 0;
+    transition: opacity 0.2s 0.1s ease-in-out; /* Adiciona um pequeno delay */
+    font-weight: 500;
+}
+
+.side-bar:hover .nav-text {
+    opacity: 1;
+}
+
+/* --- BARRA SUPERIOR (TOP BAR) --- */
+.top-bar {
+    min-height: 80px;
+    background-color: var(--blue-800);
+    border-bottom: 1px solid var(--blue-900);
+    padding: 0 25px;
+    flex-shrink: 0; /* Impede que a barra encolha */
+}
+
+.top-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.search-placeholder {
+    flex-grow: 1;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info {
+    text-align: right;
+}
+
+.user-name {
+    display: block;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.user-role {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray-400);
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--button);
+}
+
+/* Estilo para botão de logout, caso implemente */
+.logout-btn {
+    color: var(--gray-400);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: var(--danger);
 }

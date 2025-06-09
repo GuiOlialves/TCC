@@ -26,7 +26,7 @@ exports.editar = async (req, res) => {
   const id = req.params.id;
   const { name, category, price, quantity } = req.body;
   try {
-    await estoque.findByIdAndUpdate(id, {
+    await EstoqueModel.findByIdAndUpdate(id, {
       newItemName: name,
       newItemCategory: category,
       newItemPrice: price,

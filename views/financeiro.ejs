@@ -12,160 +12,149 @@
     <link rel="stylesheet" href="/assets/css/modal.css">
     <link rel="stylesheet" href="/assets/css/financeiro.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>VetControl - Lista de Pets</title>
 </head>
 
 <body>
-    <main>
+   
+         <main class="container-principal">
+        <!-- NOVA BARRA LATERAL -->
         <section class="side-bar">
-            <div class="logo">
-                <img src="../../assets/images/logo.png" class="imagem" alt="">
-            </div>
-            <nav>
-                <a href="lista-pets"
-                  ><img src="../../assets/images/home.png" alt="" /><p>Lista de Pets</p></a
-                >
-                <a href="agenda"
-                  ><img src="../../assets/images/calendar.png" alt="" /><p>Agenda</p></a
-                >
-                <a href="estoque"
-                  ><img src="../../assets/images/stock.png" alt="" /><p>Estoque</p></a
-                >
-                <a href="financeiro"
-                  ><img src="../../assets/images/finance.png" alt="" /><p>Painel
-                    Financeiro</p></a
-                >
-                <a href="relatorios"
-                  ><img
-                    src="../../assets/images/relatorios.png"
-                    alt=""
-                  /><p>Relátorios</p></a
-                >
-              </nav>
+            <a href="/agenda" class="sidebar-logo">
+                <img src="/assets/images/logo-title.png" alt="Logo VetControl" class="logo-img">
+                <h1 class="logo-text">VetControl</h1>
+            </a>
+            
+            <nav class="sidebar-nav">
+                <a href="/lista-pets" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                    <p class="nav-text">Lista de Pets</p>
+                </a>
+                <!-- Adicionando a classe 'active' para a página de agenda -->
+                <a href="/agenda" class="nav-item active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <p class="nav-text">Agenda</p>
+                </a>
+                <a href="/estoque" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    <p class="nav-text">Estoque</p>
+                </a>
+                <a href="/financeiro" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <p class="nav-text">Financeiro</p>
+                </a>
+                <a href="/relatorios" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    <p class="nav-text">Relatórios</p>
+                </a>
+            </nav>
         </section>
 
-
-        <div class="main2">
+        <div class="conteudo-principal">
+            <!-- NOVA BARRA SUPERIOR -->
             <header class="top-bar">
-                <div class="left-side">
-                    <div class="logo">
-                        <div class="imagem"></div>
-                        <h1>VetControl</h1>
+                <div class="top-bar-content">
+                    <div class="search-placeholder"></div>
+                    <div class="user-area">
+                        <div class="user-info">
+                            <span class="user-name">Dr.Ernandes</span>
+                            <span class="user-role">Veterinário</span>
+                        </div>
+                        <img class="user-avatar" src="/assets/images/User.png" alt="Avatar do Usuário">
                     </div>
-                </div>
-                <div class="right-side">
-                    <img class="userImage" src="../../assets/images/User.png" alt="">
-                    <span class="userName">Dr.Ernandes</span>
-                </div>
-                <div class="mobile-modal-button">
-                    <img src="assets/images/burguer-icon-mobile.png" alt="">
                 </div>
             </header>
             <main>
-                <section class="financial">
-                    <div class="graphics-left">
-                        <div class="graph line">
-                            <img src="../../assets/images/graph1.png" alt="">
-                            <div>
-                                <p>-Total de despesa</p>
-                                <p>-Total de receita</p>
-                            </div>
-                        </div>
-                        <div class="graph colunm">
-                            <p>Novos pets em cada mês</p>
-                            <img src="../../assets/images/graph2.png" alt="">
-                        </div>
-                        <div class="graph colunm">
-                            <p>Lucros de cada mês</p>
-                            <img src="../../assets/images/graph2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="graphics-right">
-                        <div class="data-revenue">
-                            <p>Tipos de receita</p>
-                            <div class="data">
-                                <header>
-                                    <p>Tipo de serviço/venda</p>
-                                    <p>Quantidade</p>
-                                    <p>valor uni</p>
-                                    <p>valor total</p>
-                                </header>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Consulta de rotina</p>
-                                    <p>10</p>
-                                    <p>199,00</p>
-                                    <p>1990,00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-revenue">
-                            <p>Tipos de despesas</p>
-                            <div class="data">
-                                <header>
-                                    <p>Despesas</p>
-                                    <p>valor total</p>
-                                </header>
-                                <div class="item">
-                                    <p>Aluguel</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Aluguel</p>
-                                    <p>1990,00</p>
-                                </div>
-                                <div class="item">
-                                    <p>Aluguel</p>
-                                    <p>1990,00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="financial-dashboard">
+    <!-- Novo container para os cards em grade -->
+    <div class="summary-grid">
+        <!-- Card de Faturamento -->
+        <div class="summary-card">
+            <div class="card-icon icon-faturamento">
+                <!-- Ícone de Dinheiro (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3 class="card-value">R$ <%= faturamentoTotal.toFixed(2) %></h3>
+                <p class="card-label">Faturamento (Consultas)</p>
+            </div>
+        </div>
+
+        <!-- Card de Estoque -->
+        <div class="summary-card">
+            <div class="card-icon icon-estoque">
+                <!-- Ícone de Caixa (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="card-content">
+                <h3 class="card-value">R$ <%= valorTotalEstoque.toFixed(2) %></h3>
+                <p class="card-label">Valor em Estoque</p>
+            </div>
+        </div>
+
+        <!-- Card de Total de Consultas -->
+        <div class="summary-card">
+            <div class="card-icon icon-consultas">
+                <!-- Ícone de Estetoscópio (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0Z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3 class="card-value"><%= totalConsultas %></h3>
+                <p class="card-label">Total de Consultas</p>
+            </div>
+        </div>
+
+        <!-- Card de Itens em Estoque -->
+        <div class="summary-card">
+            <div class="card-icon icon-itens">
+                 <!-- Ícone de Prancheta (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            </div>
+            <div class="card-content">
+                <h3 class="card-value"><%= totalItensEstoque %></h3>
+                <p class="card-label">Itens em Estoque</p>
+            </div>
+        </div>
+    </div>
+
+                <div class="graph colunm chart-container">
+                    <h3>Distribuição de Valores</h3>
+                    <canvas id="financeiroChart"></canvas>
+                </div>
+            </div>
+        </div>
                 </section>
             </main>
         </div>
     </main>
+     
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                  <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('financeiroChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Faturamento de Consultas', 'Valor do Estoque'],
+                        datasets: [{
+                            label: 'Valor em R$',
+                            data: [<%- faturamentoTotal %>, <%- valorTotalEstoque %>],
+                            backgroundColor: ['rgba(71, 155, 216, 0.7)', 'rgba(255, 159, 64, 0.7)'],
+                            borderColor: ['rgba(71, 155, 216, 1)', 'rgba(255, 159, 64, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
+        });
+    </script>
+    
     <script src="../js/sideBar.js"></script>
 </body>
 

@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logo-title.png"/>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/login.css" />
-    <title>VetControl</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <title>VetControl - Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Lado Esquerdo: Branding e Imagem -->
+        <div class="login-branding">
+            <img src="/assets/images/logo.png" alt="Logo VetControl" class="logo-img">
+            <h1>VetControl</h1>
+            <p>Gerenciamento completo para sua clínica veterinária.</p>
+        </div>
 
-  <body>
-    <main>
-      <section class="section-logo">
-        <img src="assets/images/logo2.png" alt="" />
-        <p>O melhor gerenciador de veterinário</p>
-      </section>
-      <div class="line"></div>
-      <form action="/entrar" method="post" id="form">
-        <h1>Login</h1>
-        <input type="text" placeholder="Login" id="userInput" name="user" />
-        <input type="password" placeholder="Senha" id="passwordInput" name="password" />
-        <button>Entrar</button>
-      </form>
-    </main>
+        <!-- Lado Direito: Formulário de Login -->
+        <div class="login-form-wrapper">
+            <form id="form" class="login-form" action="/" method="POST">
+                <h2>Acesse sua Conta</h2>
+
+                <!-- Bloco para exibir mensagens de erro -->
+                <% if (error) { %>
+                    <p class="error-message-login"><%= error %></p>
+                <% } %>
+                
+                <div class="input-group">
+                    <label for="userInput">Usuário</label>
+                    <input type="text" id="userInput" name="user" placeholder="Digite seu usuário" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="passwordInput">Senha</label>
+                    <input type="password" id="passwordInput" name="password" placeholder="Digite sua senha" required>
+                </div>
+                
+                <button type="submit" class="login-button">Entrar</button>
+                
+                <!-- LINHA ATUALIZADA -->
+                <p class="login-footer">Não tem uma conta? <a href="/cadastro">Cadastre-se</a>.</p>
+            </form>
+        </div>
+    </div>
     <script src="/js/login.js"></script>
-  </body>
+</body>
 </html>
